@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20180821 23:28:37.865" generator="Robot 3.0.4 (Python 2.7.15 on win32)">
+<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing" id="s1" name="RF E2E Testing">
+<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites" id="s1-s1" name="testSuites">
+<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\web_TCs" id="s1-s1-s1" name="web TCs">
+<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\web_TCs\etrain" id="s1-s1-s1-s1" name="Etrain">
+<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\web_TCs\etrain\searchbetweenstations.robot" id="s1-s1-s1-s1-s1" name="Searchbetweenstations">
+<test id="s1-s1-s1-s1-s1-t1" name="Search trains between stations">
+<kw name="Open Browser and activate home page" library="objetrainHome">
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${url}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20180821 23:28:38.330" level="INFO">Opening browser 'chrome' to base url 'https://etrain.info'</msg>
+<status status="PASS" endtime="20180821 23:28:53.023" starttime="20180821 23:28:38.330"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" endtime="20180821 23:28:54.478" starttime="20180821 23:28:53.023"></status>
+</kw>
+<status status="PASS" endtime="20180821 23:28:54.478" starttime="20180821 23:28:38.322"></status>
+</kw>
+<kw name="Enter the source and destination stations" library="objetrainHome">
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>name=station1</arg>
+<arg>CHENNAI CENTRAL</arg>
+</arguments>
+<msg timestamp="20180821 23:28:54.482" level="INFO">Typing text 'CHENNAI CENTRAL' into text field 'name=station1'</msg>
+<status status="PASS" endtime="20180821 23:28:56.018" starttime="20180821 23:28:54.482"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>name=station2</arg>
+<arg>RANCHI</arg>
+</arguments>
+<msg timestamp="20180821 23:28:56.018" level="INFO">Typing text 'RANCHI' into text field 'name=station2'</msg>
+<status status="PASS" endtime="20180821 23:28:56.846" starttime="20180821 23:28:56.018"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>id=tbssbmtbtn</arg>
+</arguments>
+<msg timestamp="20180821 23:28:56.846" level="INFO">Clicking element 'id=tbssbmtbtn'.</msg>
+<status status="PASS" endtime="20180821 23:28:57.286" starttime="20180821 23:28:56.846"></status>
+</kw>
+<status status="PASS" endtime="20180821 23:28:57.290" starttime="20180821 23:28:54.482"></status>
+</kw>
+<status status="PASS" endtime="20180821 23:28:57.294" critical="yes" starttime="20180821 23:28:38.322"></status>
+</test>
+<doc>This test is to have the data driven test between pair of stations</doc>
+<status status="PASS" endtime="20180821 23:28:57.298" starttime="20180821 23:28:37.978"></status>
+</suite>
+<status status="PASS" endtime="20180821 23:28:57.311" starttime="20180821 23:28:37.970"></status>
+</suite>
+<status status="PASS" endtime="20180821 23:28:57.319" starttime="20180821 23:28:37.966"></status>
+</suite>
+<status status="PASS" endtime="20180821 23:28:57.331" starttime="20180821 23:28:37.965"></status>
+</suite>
+<status status="PASS" endtime="20180821 23:28:57.335" starttime="20180821 23:28:37.921"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="RF E2E Testing" pass="1">RF E2E Testing</stat>
+<stat fail="0" id="s1-s1" name="testSuites" pass="1">RF E2E Testing.testSuites</stat>
+<stat fail="0" id="s1-s1-s1" name="web TCs" pass="1">RF E2E Testing.testSuites.web TCs</stat>
+<stat fail="0" id="s1-s1-s1-s1" name="Etrain" pass="1">RF E2E Testing.testSuites.web TCs.Etrain</stat>
+<stat fail="0" id="s1-s1-s1-s1-s1" name="Searchbetweenstations" pass="1">RF E2E Testing.testSuites.web TCs.Etrain.Searchbetweenstations</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
