@@ -1,127 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20180822 12:45:11.879" generator="Robot 3.0.4 (Python 2.7.15 on win32)">
+<robot generated="20180822 18:01:25.643" generator="Robot 3.0.4 (Python 2.7.15 on win32)">
 <suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing" id="s1" name="RF E2E Testing">
 <suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites" id="s1-s1" name="testSuites">
-<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\web_TCs" id="s1-s1-s1" name="web TCs">
-<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\web_TCs\etrain" id="s1-s1-s1-s1" name="Etrain">
-<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\web_TCs\etrain\searchbetweenstations.robot" id="s1-s1-s1-s1-s1" name="Searchbetweenstations">
-<test id="s1-s1-s1-s1-s1-t1" name="Search trains between stations">
-<kw name="Open Browser and activate home page" library="objetrainHome">
-<kw name="Open Browser" library="Selenium2Library">
-<doc>Opens a new browser instance to given URL.</doc>
+<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\api_TCs" id="s1-s1-s1" name="api TCs">
+<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\api_TCs\ergast" id="s1-s1-s1-s1" name="Ergast">
+<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\api_TCs\ergast\ergastRequest.robot" id="s1-s1-s1-s1-s1" name="ergastRequest">
+<kw type="setup" name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
 <arguments>
-<arg>${url}</arg>
-<arg>${Browser}</arg>
+<arg>ergast</arg>
+<arg>http://ergast.com/api</arg>
 </arguments>
-<msg timestamp="20180822 12:45:12.563" level="INFO">Opening browser 'chrome' to base url 'https://etrain.info/'</msg>
-<status status="PASS" endtime="20180822 12:45:27.344" starttime="20180822 12:45:12.563"></status>
+<msg timestamp="20180822 18:01:26.607" level="INFO">Creating Session using : alias=ergast, url=http://ergast.com/api, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180822 18:01:26.609" starttime="20180822 18:01:26.606"></status>
 </kw>
-<kw name="Maximize Browser Window" library="Selenium2Library">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" endtime="20180822 12:45:28.825" starttime="20180822 12:45:27.345"></status>
-</kw>
-<status status="PASS" endtime="20180822 12:45:28.827" starttime="20180822 12:45:12.563"></status>
-</kw>
-<kw name="Enter the source and destination stations" library="objetrainHome">
-<kw name="Open Excel" library="ExcelLibrary">
-<doc>Opens the Excel file from the path provided in the file name parameter.</doc>
+<test id="s1-s1-s1-s1-s1-t1" name="Test the Webservices of Formula One">
+<kw name="Test response for successful HTTP requests">
 <arguments>
-<arg>${sFileName}</arg>
-<arg>useTempDir=False</arg>
-</arguments>
-<status status="PASS" endtime="20180822 12:45:28.858" starttime="20180822 12:45:28.829"></status>
-</kw>
-<kw name="Get Row Count" library="ExcelLibrary">
-<doc>Returns the specific number of rows of the sheet name specified.</doc>
-<arguments>
-<arg>${sheetName}</arg>
-</arguments>
-<assign>
-<var>${rCount}</var>
-</assign>
-<msg timestamp="20180822 12:45:28.862" level="INFO">${rCount} = 2</msg>
-<status status="PASS" endtime="20180822 12:45:28.863" starttime="20180822 12:45:28.859"></status>
-</kw>
-<kw type="for" name="${x} IN RANGE [ 1 | ${rCount} ]">
-<kw type="foritem" name="${x} = 1">
-<kw name="Read Cell Data By Coordinates" library="ExcelLibrary">
-<doc>Uses the column and row to return the data from that cell.</doc>
-<arguments>
-<arg>${sheetName}</arg>
-<arg>0</arg>
-<arg>${x}</arg>
-</arguments>
-<assign>
-<var>${c1Value}</var>
-</assign>
-<msg timestamp="20180822 12:45:28.868" level="INFO">${c1Value} = CHENNAI CENTRAL</msg>
-<status status="PASS" endtime="20180822 12:45:28.868" starttime="20180822 12:45:28.866"></status>
-</kw>
-<kw name="Read Cell Data By Coordinates" library="ExcelLibrary">
-<doc>Uses the column and row to return the data from that cell.</doc>
-<arguments>
-<arg>${sheetName}</arg>
+<arg>f1</arg>
+<arg>2008</arg>
 <arg>1</arg>
-<arg>${x}</arg>
+</arguments>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>ergast</arg>
+<arg>/${series}/${season}/${round}</arg>
 </arguments>
 <assign>
-<var>${c2Value}</var>
+<var>${response}</var>
 </assign>
-<msg timestamp="20180822 12:45:28.871" level="INFO">${c2Value} = RANCHI</msg>
-<status status="PASS" endtime="20180822 12:45:28.872" starttime="20180822 12:45:28.869"></status>
+<msg timestamp="20180822 18:01:31.669" level="INFO">Get Request using : alias=ergast, uri=/f1/2008/1, headers=None json=None</msg>
+<msg timestamp="20180822 18:01:31.670" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180822 18:01:31.671" starttime="20180822 18:01:26.617"></status>
 </kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
 <arguments>
-<arg>name=station1</arg>
-<arg>${c1Value}</arg>
+<arg>${response.status_code}</arg>
+<arg>${200}</arg>
 </arguments>
-<msg timestamp="20180822 12:45:28.874" level="INFO">Typing text 'CHENNAI CENTRAL' into text field 'name=station1'</msg>
-<status status="PASS" endtime="20180822 12:45:31.419" starttime="20180822 12:45:28.873"></status>
+<status status="PASS" endtime="20180822 18:01:31.688" starttime="20180822 18:01:31.674"></status>
 </kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
+<status status="PASS" endtime="20180822 18:01:31.689" starttime="20180822 18:01:26.612"></status>
+</kw>
+<kw name="Test The XML Response of the Request">
 <arguments>
-<arg>name=station2</arg>
-<arg>${c2Value}</arg>
+<arg>f1</arg>
+<arg>2008</arg>
+<arg>1</arg>
 </arguments>
-<msg timestamp="20180822 12:45:31.424" level="INFO">Typing text 'RANCHI' into text field 'name=station2'</msg>
-<status status="PASS" endtime="20180822 12:45:32.323" starttime="20180822 12:45:31.421"></status>
-</kw>
-<kw name="Click Element" library="Selenium2Library">
-<doc>Click element identified by `locator`.</doc>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
 <arguments>
-<arg>id=tbssbmtbtn</arg>
+<arg>ergast</arg>
+<arg>/f1/seasons</arg>
 </arguments>
-<msg timestamp="20180822 12:45:32.325" level="INFO">Clicking element 'id=tbssbmtbtn'.</msg>
-<status status="PASS" endtime="20180822 12:45:32.836" starttime="20180822 12:45:32.324"></status>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180822 18:01:33.068" level="INFO">Get Request using : alias=ergast, uri=/f1/seasons, headers=None json=None</msg>
+<msg timestamp="20180822 18:01:33.070" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180822 18:01:33.070" starttime="20180822 18:01:31.694"></status>
 </kw>
-<status status="PASS" endtime="20180822 12:45:32.837" starttime="20180822 12:45:28.865"></status>
-</kw>
-<status status="PASS" endtime="20180822 12:45:32.838" starttime="20180822 12:45:28.863"></status>
-</kw>
-<kw name="Log" library="BuiltIn">
-<doc>Logs the given message with the given level.</doc>
+<kw name="Parse Xml" library="XML">
+<doc>Parses the given XML file or string into an element structure.</doc>
 <arguments>
-<arg>Out of loop</arg>
+<arg>${response.text}</arg>
 </arguments>
-<msg timestamp="20180822 12:45:32.841" level="INFO">Out of loop</msg>
-<status status="PASS" endtime="20180822 12:45:32.841" starttime="20180822 12:45:32.839"></status>
+<assign>
+<var>${xml_response}</var>
+</assign>
+<msg timestamp="20180822 18:01:33.081" level="INFO">${xml_response} = &lt;Element 'MRData' at 0x044BC818&gt;</msg>
+<status status="PASS" endtime="20180822 18:01:33.082" starttime="20180822 18:01:33.072"></status>
 </kw>
-<status status="PASS" endtime="20180822 12:45:32.842" starttime="20180822 12:45:28.828"></status>
+<status status="PASS" endtime="20180822 18:01:33.083" starttime="20180822 18:01:31.692"></status>
 </kw>
-<status status="PASS" endtime="20180822 12:45:32.843" critical="yes" starttime="20180822 12:45:12.562"></status>
+<status status="PASS" endtime="20180822 18:01:33.085" critical="yes" starttime="20180822 18:01:26.610"></status>
 </test>
-<doc>This test is to have the data driven test between pair of stations</doc>
-<status status="PASS" endtime="20180822 12:45:32.845" starttime="20180822 12:45:11.997"></status>
+<kw type="teardown" name="Delete All Sessions" library="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20180822 18:01:33.094" level="INFO">Delete All Sessions</msg>
+<status status="PASS" endtime="20180822 18:01:33.095" starttime="20180822 18:01:33.092"></status>
+</kw>
+<doc>This Test is to test the
+Formula one racing reuslts</doc>
+<status status="PASS" endtime="20180822 18:01:33.096" starttime="20180822 18:01:26.059"></status>
 </suite>
-<status status="PASS" endtime="20180822 12:45:32.852" starttime="20180822 12:45:11.997"></status>
+<status status="PASS" endtime="20180822 18:01:33.106" starttime="20180822 18:01:26.056"></status>
 </suite>
-<status status="PASS" endtime="20180822 12:45:32.858" starttime="20180822 12:45:11.981"></status>
+<status status="PASS" endtime="20180822 18:01:33.115" starttime="20180822 18:01:26.051"></status>
 </suite>
-<status status="PASS" endtime="20180822 12:45:32.863" starttime="20180822 12:45:11.981"></status>
+<status status="PASS" endtime="20180822 18:01:33.119" starttime="20180822 18:01:26.042"></status>
 </suite>
-<status status="PASS" endtime="20180822 12:45:32.867" starttime="20180822 12:45:11.934"></status>
+<status status="PASS" endtime="20180822 18:01:33.123" starttime="20180822 18:01:26.011"></status>
 </suite>
 <statistics>
 <total>
@@ -133,9 +105,9 @@
 <suite>
 <stat fail="0" id="s1" name="RF E2E Testing" pass="1">RF E2E Testing</stat>
 <stat fail="0" id="s1-s1" name="testSuites" pass="1">RF E2E Testing.testSuites</stat>
-<stat fail="0" id="s1-s1-s1" name="web TCs" pass="1">RF E2E Testing.testSuites.web TCs</stat>
-<stat fail="0" id="s1-s1-s1-s1" name="Etrain" pass="1">RF E2E Testing.testSuites.web TCs.Etrain</stat>
-<stat fail="0" id="s1-s1-s1-s1-s1" name="Searchbetweenstations" pass="1">RF E2E Testing.testSuites.web TCs.Etrain.Searchbetweenstations</stat>
+<stat fail="0" id="s1-s1-s1" name="api TCs" pass="1">RF E2E Testing.testSuites.api TCs</stat>
+<stat fail="0" id="s1-s1-s1-s1" name="Ergast" pass="1">RF E2E Testing.testSuites.api TCs.Ergast</stat>
+<stat fail="0" id="s1-s1-s1-s1-s1" name="ergastRequest" pass="1">RF E2E Testing.testSuites.api TCs.Ergast.ergastRequest</stat>
 </suite>
 </statistics>
 <errors>
