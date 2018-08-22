@@ -1,7 +1,7 @@
 ###############################################
 #Author : Ambarish Majee
 #Date Created : 08/21/2018
-#Date Modified : 08/21/2018
+#Date Modified : 08/22/2018
 #Modifications
 #Created the initail version of POM
 ###############################################
@@ -38,6 +38,5 @@ Enter the source and destination stations
      \  Input Text    name=station1    ${c1Value}
      \  Input Text    name=station2    ${c2Value}
      \  Click Element    id=tbssbmtbtn 
-      Log  Out of loop
     
    
