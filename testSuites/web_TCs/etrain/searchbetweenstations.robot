@@ -8,7 +8,15 @@
 
 *** Settings ***
 Documentation    This test is to have the data driven test between pair of stations 
+Library           ExcelLibrary
+Library           OperatingSystem
+Library           robot.api.logger
 Resource    ../../../resources/web/pageObjects/etrain/objetrainHome.robot
+
+
+
+*** Variables ***
+
 
 *** Test Cases ***
 Search trains between stations       

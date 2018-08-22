@@ -9,15 +9,19 @@
 Documentation  Page Object Amazon Log in page 
 Library    Selenium2Library    
 Library    BuiltIn
-Library  ExcelLibrary 
+Library    ExcelLibrary 
+Library    OperatingSystem
+Library    robot.api.logger
 
 *** Variables ***
 ${Browser}  chrome
-${url}   https://etrain.info
-${driverLocation}  /RF_E2E_Testing/resources/input/etrain/sourceDestination.xlsx 
+${url}   https://etrain.info/
+${inputDir}  D:\\00_Workspace\\04_RobotFrameWork\\01_Python\\RF_E2E_Testing
+${sFileName}  ${inputDir}/resources/input/etrain/${fileName}
+${fileName}  sourceDestination.xls
+${sheetName}  srcdstn
 
-
-
+ 
 *** Keywords ***
 Open Browser and activate home page
      Open Browser    ${url}  ${Browser}
@@ -26,6 +30,14 @@ Open Browser and activate home page
     
 
 Enter the source and destination stations
-    Input Text    name=station1    CHENNAI CENTRAL
-    Input Text    name=station2    RANCHI
-    Click Element    id=tbssbmtbtn    
+    Open Excel    ${sFileName}  useTempDir=False
+    ${rCount}  Get Row Count  	${sheetName}
+    : FOR    ${x}    IN RANGE    1    ${rCount}
+     \  ${c1Value}  Read Cell Data By Coordinates    ${sheetName}    0   ${x}     
+     \  ${c2Value}  Read Cell Data By Coordinates    ${sheetName}    1   ${x}    
+     \  Input Text    name=station1    ${c1Value}
+     \  Input Text    name=station2    ${c2Value}
+     \  Click Element    id=tbssbmtbtn 
+      Log  Out of loop
+    
+   

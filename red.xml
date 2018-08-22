@@ -4,6 +4,7 @@
     <relativeTo>WORKSPACE</relativeTo>
     <referencedLibrary type="PYTHON" name="Selenium2Library" path="C:/Python27/Lib/site-packages"/>
     <referencedLibrary type="PYTHON" name="ExcelLibrary" path="C:/Python27/Lib/site-packages"/>
+    <referencedLibrary type="PYTHON" name="robot.api.logger" path="C:/Python27/lib/site-packages"/>
     <pythonpath/>
     <classpath/>
     <excludedForValidation/>
