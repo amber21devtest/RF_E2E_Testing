@@ -6,7 +6,7 @@
 #Created the initail version of POM
 ###############################################
 *** Settings ***
-Documentation  Page Object Amazon Log in page 
+Documentation  Search in etrain.info site for source and destination stations
 Library    Selenium2Library    
 Library    BuiltIn
 Library    ExcelLibrary 
