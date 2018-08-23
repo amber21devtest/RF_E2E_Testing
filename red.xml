@@ -6,6 +6,7 @@
     <referencedLibrary type="PYTHON" name="ExcelLibrary" path="C:/Python27/Lib/site-packages"/>
     <referencedLibrary type="PYTHON" name="robot.api.logger" path="C:/Python27/lib/site-packages"/>
     <referencedLibrary type="PYTHON" name="RequestsLibrary" path="C:/Python27/Lib/site-packages"/>
+    <referencedLibrary type="PYTHON" name="AppiumLibrary" path="C:/Python27/Lib/site-packages"/>
     <pythonpath/>
     <classpath/>
     <excludedForValidation/>

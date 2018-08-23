@@ -1,99 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20180822 18:01:25.643" generator="Robot 3.0.4 (Python 2.7.15 on win32)">
+<robot generated="20180823 22:00:39.852" generator="Robot 3.0.4 (Python 2.7.15 on win32)">
 <suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing" id="s1" name="RF E2E Testing">
 <suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites" id="s1-s1" name="testSuites">
-<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\api_TCs" id="s1-s1-s1" name="api TCs">
-<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\api_TCs\ergast" id="s1-s1-s1-s1" name="Ergast">
-<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\api_TCs\ergast\ergastRequest.robot" id="s1-s1-s1-s1-s1" name="ergastRequest">
-<kw type="setup" name="Create Session" library="RequestsLibrary">
-<doc>Create Session: create a HTTP session to a server</doc>
+<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\mobile_TCs" id="s1-s1-s1" name="mobile TCs">
+<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\mobile_TCs\metrain" id="s1-s1-s1-s1" name="Metrain">
+<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\mobile_TCs\metrain\metrainHome.robot" id="s1-s1-s1-s1-s1" name="metrainHome">
+<test id="s1-s1-s1-s1-s1-t1" name="Testhello">
+<kw name="Test">
+<kw name="Open Application" library="AppiumLibrary">
+<doc>Opens a new application to given Appium server.</doc>
 <arguments>
-<arg>ergast</arg>
-<arg>http://ergast.com/api</arg>
+<arg>${REMOTE_URL}</arg>
+<arg>platformName=${PLATFORM_NAME}</arg>
+<arg>deviceName=${DEVICE_NAME}</arg>
+<arg>browserName=${BROWSER_NAME}</arg>
 </arguments>
-<msg timestamp="20180822 18:01:26.607" level="INFO">Creating Session using : alias=ergast, url=http://ergast.com/api, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" endtime="20180822 18:01:26.609" starttime="20180822 18:01:26.606"></status>
+<status status="PASS" endtime="20180823 22:01:32.891" starttime="20180823 22:00:40.981"></status>
 </kw>
-<test id="s1-s1-s1-s1-s1-t1" name="Test the Webservices of Formula One">
-<kw name="Test response for successful HTTP requests">
-<arguments>
-<arg>f1</arg>
-<arg>2008</arg>
-<arg>1</arg>
-</arguments>
-<kw name="Get Request" library="RequestsLibrary">
-<doc>Send a GET request on the session object found using the</doc>
-<arguments>
-<arg>ergast</arg>
-<arg>/${series}/${season}/${round}</arg>
-</arguments>
-<assign>
-<var>${response}</var>
-</assign>
-<msg timestamp="20180822 18:01:31.669" level="INFO">Get Request using : alias=ergast, uri=/f1/2008/1, headers=None json=None</msg>
-<msg timestamp="20180822 18:01:31.670" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" endtime="20180822 18:01:31.671" starttime="20180822 18:01:26.617"></status>
+<status status="PASS" endtime="20180823 22:01:32.893" starttime="20180823 22:00:40.977"></status>
 </kw>
-<kw name="Should Be Equal" library="BuiltIn">
-<doc>Fails if the given objects are unequal.</doc>
-<arguments>
-<arg>${response.status_code}</arg>
-<arg>${200}</arg>
-</arguments>
-<status status="PASS" endtime="20180822 18:01:31.688" starttime="20180822 18:01:31.674"></status>
-</kw>
-<status status="PASS" endtime="20180822 18:01:31.689" starttime="20180822 18:01:26.612"></status>
-</kw>
-<kw name="Test The XML Response of the Request">
-<arguments>
-<arg>f1</arg>
-<arg>2008</arg>
-<arg>1</arg>
-</arguments>
-<kw name="Get Request" library="RequestsLibrary">
-<doc>Send a GET request on the session object found using the</doc>
-<arguments>
-<arg>ergast</arg>
-<arg>/f1/seasons</arg>
-</arguments>
-<assign>
-<var>${response}</var>
-</assign>
-<msg timestamp="20180822 18:01:33.068" level="INFO">Get Request using : alias=ergast, uri=/f1/seasons, headers=None json=None</msg>
-<msg timestamp="20180822 18:01:33.070" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" endtime="20180822 18:01:33.070" starttime="20180822 18:01:31.694"></status>
-</kw>
-<kw name="Parse Xml" library="XML">
-<doc>Parses the given XML file or string into an element structure.</doc>
-<arguments>
-<arg>${response.text}</arg>
-</arguments>
-<assign>
-<var>${xml_response}</var>
-</assign>
-<msg timestamp="20180822 18:01:33.081" level="INFO">${xml_response} = &lt;Element 'MRData' at 0x044BC818&gt;</msg>
-<status status="PASS" endtime="20180822 18:01:33.082" starttime="20180822 18:01:33.072"></status>
-</kw>
-<status status="PASS" endtime="20180822 18:01:33.083" starttime="20180822 18:01:31.692"></status>
-</kw>
-<status status="PASS" endtime="20180822 18:01:33.085" critical="yes" starttime="20180822 18:01:26.610"></status>
+<status status="PASS" endtime="20180823 22:01:32.894" critical="yes" starttime="20180823 22:00:40.970"></status>
 </test>
-<kw type="teardown" name="Delete All Sessions" library="RequestsLibrary">
-<doc>Removes all the session objects</doc>
-<msg timestamp="20180822 18:01:33.094" level="INFO">Delete All Sessions</msg>
-<status status="PASS" endtime="20180822 18:01:33.095" starttime="20180822 18:01:33.092"></status>
-</kw>
-<doc>This Test is to test the
-Formula one racing reuslts</doc>
-<status status="PASS" endtime="20180822 18:01:33.096" starttime="20180822 18:01:26.059"></status>
+<status status="PASS" endtime="20180823 22:01:32.898" starttime="20180823 22:00:40.106"></status>
 </suite>
-<status status="PASS" endtime="20180822 18:01:33.106" starttime="20180822 18:01:26.056"></status>
+<status status="PASS" endtime="20180823 22:01:32.907" starttime="20180823 22:00:40.095"></status>
 </suite>
-<status status="PASS" endtime="20180822 18:01:33.115" starttime="20180822 18:01:26.051"></status>
+<status status="PASS" endtime="20180823 22:01:32.914" starttime="20180823 22:00:40.083"></status>
 </suite>
-<status status="PASS" endtime="20180822 18:01:33.119" starttime="20180822 18:01:26.042"></status>
+<status status="PASS" endtime="20180823 22:01:32.920" starttime="20180823 22:00:40.070"></status>
 </suite>
-<status status="PASS" endtime="20180822 18:01:33.123" starttime="20180822 18:01:26.011"></status>
+<status status="PASS" endtime="20180823 22:01:32.926" starttime="20180823 22:00:39.958"></status>
 </suite>
 <statistics>
 <total>
@@ -105,9 +41,9 @@ Formula one racing reuslts</doc>
 <suite>
 <stat fail="0" id="s1" name="RF E2E Testing" pass="1">RF E2E Testing</stat>
 <stat fail="0" id="s1-s1" name="testSuites" pass="1">RF E2E Testing.testSuites</stat>
-<stat fail="0" id="s1-s1-s1" name="api TCs" pass="1">RF E2E Testing.testSuites.api TCs</stat>
-<stat fail="0" id="s1-s1-s1-s1" name="Ergast" pass="1">RF E2E Testing.testSuites.api TCs.Ergast</stat>
-<stat fail="0" id="s1-s1-s1-s1-s1" name="ergastRequest" pass="1">RF E2E Testing.testSuites.api TCs.Ergast.ergastRequest</stat>
+<stat fail="0" id="s1-s1-s1" name="mobile TCs" pass="1">RF E2E Testing.testSuites.mobile TCs</stat>
+<stat fail="0" id="s1-s1-s1-s1" name="Metrain" pass="1">RF E2E Testing.testSuites.mobile TCs.Metrain</stat>
+<stat fail="0" id="s1-s1-s1-s1-s1" name="metrainHome" pass="1">RF E2E Testing.testSuites.mobile TCs.Metrain.metrainHome</stat>
 </suite>
 </statistics>
 <errors>

@@ -37,6 +37,7 @@ Enter the source and destination stations
      \  ${c2Value}  Read Cell Data By Coordinates    ${sheetName}    1   ${x}    
      \  Input Text    name=station1    ${c1Value}
      \  Input Text    name=station2    ${c2Value}
-     \  Click Element    id=tbssbmtbtn 
+     \  Click Element    id=tbssbmtbtn
+     log  hello 
     
    
