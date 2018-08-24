@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<keywordspec generated="20180824 00:30:51" type="library" name="sauceclient" format="ROBOT">
+<version>1.0.0</version>
+<scope>global</scope>
+<namedargs>yes</namedargs>
+<doc>Sauce Labs REST API client
+
+#   Copyright (c) 2013-2017 Corey Goldberg
+#
+#   This file is part of: sauceclient
+#   https://github.com/cgoldberg/sauceclient
+#
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#   ----------------
+#
+#   Sauce Labs REST API documentation:
+#     http://saucelabs.com/docs/rest</doc>
+<kw name="Urlencode">
+<arguments>
+<arg>query</arg>
+<arg>doseq=0</arg>
+</arguments>
+<doc>Encode a sequence of two-element tuples or dictionary into a URL query string.
+
+If any values in the query arg are sequences and doseq is true, each
+sequence element is converted to a separate parameter.
+
+If the query arg is a sequence of two-element tuples, the order of the
+parameters in the output will match the order of parameters in the
+input.</doc>
+<tags>
+</tags>
+</kw>
+</keywordspec>

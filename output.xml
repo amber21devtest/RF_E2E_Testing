@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20180823 22:00:39.852" generator="Robot 3.0.4 (Python 2.7.15 on win32)">
+<robot generated="20180824 14:00:40.453" generator="Robot 3.0.4 (Python 2.7.15 on win32)">
 <suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing" id="s1" name="RF E2E Testing">
 <suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites" id="s1-s1" name="testSuites">
-<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\mobile_TCs" id="s1-s1-s1" name="mobile TCs">
-<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\mobile_TCs\metrain" id="s1-s1-s1-s1" name="Metrain">
-<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\mobile_TCs\metrain\metrainHome.robot" id="s1-s1-s1-s1-s1" name="metrainHome">
-<test id="s1-s1-s1-s1-s1-t1" name="Testhello">
-<kw name="Test">
+<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\saucelabs_TCs" id="s1-s1-s1" name="saucelabs TCs">
+<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\saucelabs_TCs\sauce_metrainHome.robot" id="s1-s1-s1-s1" name="sauce metrainHome">
+<test id="s1-s1-s1-s1-t1" name="This test case is to test the web mobile">
+<kw name="Open etrain browser in mobile">
 <kw name="Open Application" library="AppiumLibrary">
 <doc>Opens a new application to given Appium server.</doc>
 <arguments>
@@ -14,38 +13,46 @@
 <arg>platformName=${PLATFORM_NAME}</arg>
 <arg>deviceName=${DEVICE_NAME}</arg>
 <arg>browserName=${BROWSER_NAME}</arg>
+<arg>androidPackage=${ANDRIOD_PACKAGE}</arg>
 </arguments>
-<status status="PASS" endtime="20180823 22:01:32.891" starttime="20180823 22:00:40.981"></status>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20180824 14:00:42.446" level="FAIL">No application is open</msg>
+<status status="FAIL" endtime="20180824 14:00:42.447" starttime="20180824 14:00:42.436"></status>
 </kw>
-<status status="PASS" endtime="20180823 22:01:32.893" starttime="20180823 22:00:40.977"></status>
+<msg timestamp="20180824 14:00:42.449" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
+<msg timestamp="20180824 14:00:42.461" level="FAIL">WebDriverException: Message: Unexpected server error.
+</msg>
+<status status="FAIL" endtime="20180824 14:00:42.462" starttime="20180824 14:00:40.918"></status>
 </kw>
-<status status="PASS" endtime="20180823 22:01:32.894" critical="yes" starttime="20180823 22:00:40.970"></status>
+<status status="FAIL" endtime="20180824 14:00:42.464" starttime="20180824 14:00:40.917"></status>
+</kw>
+<status status="FAIL" endtime="20180824 14:00:42.466" critical="yes" starttime="20180824 14:00:40.915">WebDriverException: Message: Unexpected server error.
+</status>
 </test>
-<status status="PASS" endtime="20180823 22:01:32.898" starttime="20180823 22:00:40.106"></status>
+<status status="FAIL" endtime="20180824 14:00:42.470" starttime="20180824 14:00:40.541"></status>
 </suite>
-<status status="PASS" endtime="20180823 22:01:32.907" starttime="20180823 22:00:40.095"></status>
+<status status="FAIL" endtime="20180824 14:00:42.479" starttime="20180824 14:00:40.537"></status>
 </suite>
-<status status="PASS" endtime="20180823 22:01:32.914" starttime="20180823 22:00:40.083"></status>
+<status status="FAIL" endtime="20180824 14:00:42.486" starttime="20180824 14:00:40.534"></status>
 </suite>
-<status status="PASS" endtime="20180823 22:01:32.920" starttime="20180823 22:00:40.070"></status>
-</suite>
-<status status="PASS" endtime="20180823 22:01:32.926" starttime="20180823 22:00:39.958"></status>
+<status status="FAIL" endtime="20180824 14:00:42.492" starttime="20180824 14:00:40.501"></status>
 </suite>
 <statistics>
 <total>
-<stat fail="0" pass="1">Critical Tests</stat>
-<stat fail="0" pass="1">All Tests</stat>
+<stat fail="1" pass="0">Critical Tests</stat>
+<stat fail="1" pass="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat fail="0" id="s1" name="RF E2E Testing" pass="1">RF E2E Testing</stat>
-<stat fail="0" id="s1-s1" name="testSuites" pass="1">RF E2E Testing.testSuites</stat>
-<stat fail="0" id="s1-s1-s1" name="mobile TCs" pass="1">RF E2E Testing.testSuites.mobile TCs</stat>
-<stat fail="0" id="s1-s1-s1-s1" name="Metrain" pass="1">RF E2E Testing.testSuites.mobile TCs.Metrain</stat>
-<stat fail="0" id="s1-s1-s1-s1-s1" name="metrainHome" pass="1">RF E2E Testing.testSuites.mobile TCs.Metrain.metrainHome</stat>
+<stat fail="1" id="s1" name="RF E2E Testing" pass="0">RF E2E Testing</stat>
+<stat fail="1" id="s1-s1" name="testSuites" pass="0">RF E2E Testing.testSuites</stat>
+<stat fail="1" id="s1-s1-s1" name="saucelabs TCs" pass="0">RF E2E Testing.testSuites.saucelabs TCs</stat>
+<stat fail="1" id="s1-s1-s1-s1" name="sauce metrainHome" pass="0">RF E2E Testing.testSuites.saucelabs TCs.sauce metrainHome</stat>
 </suite>
 </statistics>
 <errors>
+<msg timestamp="20180824 14:00:42.449" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
 </errors>
 </robot>

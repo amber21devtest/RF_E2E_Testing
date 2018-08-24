@@ -16,6 +16,11 @@ This test case is to test the web mobile
 
 *** Keywords ***
 Open etrain browser in mobile
-    Open Application    ${REMOTE_URL}    platformName=${PLATFORM_NAME}  deviceName=${DEVICE_NAME}   browserName=${BROWSER_NAME}           
+    Open Application    ${REMOTE_URL}    platformName=${PLATFORM_NAME}  deviceName=${DEVICE_NAME}   browserName=${BROWSER_NAME} 
+    Wait Until Page Contains Element    id=com.android.chrome:id/url_bar           
     Input Text    id=com.android.chrome:id/url_bar  ${url}
-    Tap    locator    
+    Tap    id=com.android.chrome:id/url_bar    1300    2269
+    Input Text    id=tbsfi1    MAS
+    Click Element    id=tbsfi3
+    Input Text    id=tbsfi3    RNC
+    Click Button    id=tbssbmtbtn    
