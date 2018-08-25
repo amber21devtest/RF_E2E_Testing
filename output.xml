@@ -1,192 +1,411 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20180825 21:35:03.760" generator="Robot 3.0.4 (Python 2.7.15 on win32)">
+<robot generated="20180825 23:41:01.417" generator="Robot 3.0.4 (Python 2.7.15 on win32)">
 <suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing" id="s1" name="RF E2E Testing">
 <suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites" id="s1-s1" name="testSuites">
-<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\web_TCs" id="s1-s1-s1" name="web TCs">
-<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\web_TCs\etrain" id="s1-s1-s1-s1" name="Etrain">
-<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\web_TCs\etrain\searchbetweenstations.robot" id="s1-s1-s1-s1-s1" name="Searchbetweenstations">
-<test id="s1-s1-s1-s1-s1-t1" name="Search trains between stations">
-<kw name="Open Browser and activate home page" library="objetrainHome">
+<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\performances_TCs" id="s1-s1-s1" name="performances TCs">
+<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\performances_TCs\etrain" id="s1-s1-s1-s1" name="Etrain">
+<suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\performances_TCs\etrain\etrain_performance.robot" id="s1-s1-s1-s1-s1" name="Etrain Performance">
+<test id="s1-s1-s1-s1-s1-t1" name="tc1_justRunJMeter">
+<kw name="Run Jmeter" library="JMeterLib">
+<doc>Runs JMeter. Returns None.</doc>
 <arguments>
-<arg>${METHOD}</arg>
-<arg>${URL}</arg>
-<arg>${BROWSER}</arg>
+<arg>${jMeterStartup}</arg>
+<arg>${jmxFileLocation}</arg>
+<arg>${outputResults}/tc1_justRunJMeter.jtl</arg>
 </arguments>
-<kw name="Run Keyword If" library="BuiltIn">
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<arguments>
-<arg>'${method}'=='${strWeb}'</arg>
-<arg>Excute web execution steps</arg>
-<arg>${url}</arg>
-<arg>${Browser}</arg>
-</arguments>
-<kw name="Excute web execution steps" library="objetrainHome">
-<arguments>
-<arg>${url}</arg>
-<arg>${Browser}</arg>
-</arguments>
-<kw name="Open Browser" library="Selenium2Library">
-<doc>Opens a new browser instance to given URL.</doc>
-<arguments>
-<arg>${url}</arg>
-<arg>${Browser}</arg>
-</arguments>
-<msg timestamp="20180825 21:35:04.714" level="INFO">Opening browser 'chrome' to base url 'https:\etrain.info'</msg>
-<status status="PASS" endtime="20180825 21:35:27.606" starttime="20180825 21:35:04.713"></status>
+<msg timestamp="20180825 23:41:10.175" level="INFO">Starting JMeter with following parameters:
+ - JMeter path: C:/Jmeter/bin/jmeter.bat
+ - Test plan path: D:/00_Workspace/07_Jmeter/00_SampleTestCases/etrain.info.jmx
+ - Log file path: D:/00_Workspace/04_RobotFrameWork/01_Python/RF_E2E_Testing/outputResults/tc1_justRunJMeter.jtl
+ - Other parameters:  .
+subprocess.call input list: [u'C:/Jmeter/bin/jmeter.bat', '-n', '-t', u'D:/00_Workspace/07_Jmeter/00_SampleTestCases/etrain.info.jmx', '-l', u'D:/00_Workspace/04_RobotFrameWork/01_Python/RF_E2E_Testing/outputResults/tc1_justRunJMeter.jtl']
+Value returned by JMeter: 0</msg>
+<status status="PASS" endtime="20180825 23:41:10.176" starttime="20180825 23:41:01.550"></status>
 </kw>
-<kw name="Maximize Browser Window" library="Selenium2Library">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" endtime="20180825 21:35:29.161" starttime="20180825 21:35:27.608"></status>
-</kw>
-<status status="PASS" endtime="20180825 21:35:29.163" starttime="20180825 21:35:04.710"></status>
-</kw>
-<status status="PASS" endtime="20180825 21:35:29.164" starttime="20180825 21:35:04.707"></status>
-</kw>
-<kw name="Run Keyword If" library="BuiltIn">
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<arguments>
-<arg>'${method}'=='${strMOBILE}'</arg>
-<arg>Excute mobileweb execution steps</arg>
-<arg>${url}</arg>
-</arguments>
-<status status="PASS" endtime="20180825 21:35:29.167" starttime="20180825 21:35:29.166"></status>
-</kw>
-<status status="PASS" endtime="20180825 21:35:29.169" starttime="20180825 21:35:04.704"></status>
-</kw>
-<kw name="Enter the source and destination stations" library="objetrainHome">
-<kw name="Open Excel" library="ExcelLibrary">
-<doc>Opens the Excel file from the path provided in the file name parameter.</doc>
-<arguments>
-<arg>${sFileName}</arg>
-<arg>useTempDir=False</arg>
-</arguments>
-<status status="PASS" endtime="20180825 21:35:29.197" starttime="20180825 21:35:29.173"></status>
-</kw>
-<kw name="Get Row Count" library="ExcelLibrary">
-<doc>Returns the specific number of rows of the sheet name specified.</doc>
-<arguments>
-<arg>${sheetName}</arg>
-</arguments>
-<assign>
-<var>${rCount}</var>
-</assign>
-<msg timestamp="20180825 21:35:29.201" level="INFO">${rCount} = 2</msg>
-<status status="PASS" endtime="20180825 21:35:29.201" starttime="20180825 21:35:29.198"></status>
-</kw>
-<kw type="for" name="${x} IN RANGE [ 1 | ${rCount} ]">
-<kw type="foritem" name="${x} = 1">
-<kw name="Read Cell Data By Coordinates" library="ExcelLibrary">
-<doc>Uses the column and row to return the data from that cell.</doc>
-<arguments>
-<arg>${sheetName}</arg>
-<arg>0</arg>
-<arg>${x}</arg>
-</arguments>
-<assign>
-<var>${c1Value}</var>
-</assign>
-<msg timestamp="20180825 21:35:29.208" level="INFO">${c1Value} = CHENNAI CENTRAL</msg>
-<status status="PASS" endtime="20180825 21:35:29.208" starttime="20180825 21:35:29.206"></status>
-</kw>
-<kw name="Read Cell Data By Coordinates" library="ExcelLibrary">
-<doc>Uses the column and row to return the data from that cell.</doc>
-<arguments>
-<arg>${sheetName}</arg>
-<arg>1</arg>
-<arg>${x}</arg>
-</arguments>
-<assign>
-<var>${c2Value}</var>
-</assign>
-<msg timestamp="20180825 21:35:29.212" level="INFO">${c2Value} = RANCHI</msg>
-<status status="PASS" endtime="20180825 21:35:29.213" starttime="20180825 21:35:29.210"></status>
-</kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<arguments>
-<arg>id=tbsfi1</arg>
-<arg>${c1Value}</arg>
-</arguments>
-<msg timestamp="20180825 21:35:29.215" level="INFO">Typing text 'CHENNAI CENTRAL' into text field 'id=tbsfi1'</msg>
-<status status="PASS" endtime="20180825 21:35:33.159" starttime="20180825 21:35:29.214"></status>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<doc>Pauses the test executed for the given time.</doc>
-<arguments>
-<arg>5</arg>
-</arguments>
-<msg timestamp="20180825 21:35:38.163" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" endtime="20180825 21:35:38.164" starttime="20180825 21:35:33.160"></status>
-</kw>
-<kw name="Press Key" library="Selenium2Library">
-<doc>Simulates user pressing key on element identified by `locator`.</doc>
-<arguments>
-<arg>id=tbsfi1</arg>
-<arg>\\13</arg>
-</arguments>
-<status status="PASS" endtime="20180825 21:35:38.331" starttime="20180825 21:35:38.165"></status>
-</kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<arguments>
-<arg>id=tbsfi3</arg>
-<arg>${c2Value}</arg>
-</arguments>
-<msg timestamp="20180825 21:35:38.333" level="INFO">Typing text 'RANCHI' into text field 'id=tbsfi3'</msg>
-<status status="PASS" endtime="20180825 21:35:39.928" starttime="20180825 21:35:38.332"></status>
-</kw>
-<kw name="Press Key" library="Selenium2Library">
-<doc>Simulates user pressing key on element identified by `locator`.</doc>
-<arguments>
-<arg>id=tbsfi3</arg>
-<arg>\\13</arg>
-</arguments>
-<status status="PASS" endtime="20180825 21:35:40.087" starttime="20180825 21:35:39.930"></status>
-</kw>
-<kw name="Click Button" library="Selenium2Library">
-<doc>Clicks a button identified by `locator`.</doc>
-<arguments>
-<arg>id=tbssbmtbtn</arg>
-</arguments>
-<msg timestamp="20180825 21:35:40.089" level="INFO">Clicking button 'id=tbssbmtbtn'.</msg>
-<status status="PASS" endtime="20180825 21:35:41.466" starttime="20180825 21:35:40.088"></status>
-</kw>
-<status status="PASS" endtime="20180825 21:35:41.467" starttime="20180825 21:35:29.205"></status>
-</kw>
-<status status="PASS" endtime="20180825 21:35:41.468" starttime="20180825 21:35:29.202"></status>
-</kw>
-<status status="PASS" endtime="20180825 21:35:41.469" starttime="20180825 21:35:29.171"></status>
-</kw>
-<kw type="teardown" name="Close Browser" library="Selenium2Library">
-<doc>Closes the current browser.</doc>
-<status status="PASS" endtime="20180825 21:35:44.784" starttime="20180825 21:35:41.470"></status>
-</kw>
-<status status="PASS" endtime="20180825 21:35:44.786" critical="yes" starttime="20180825 21:35:04.697"></status>
+<status status="PASS" endtime="20180825 23:41:10.177" critical="yes" starttime="20180825 23:41:01.549"></status>
 </test>
-<doc>This test is to have the data driven test between pair of stations</doc>
-<status status="PASS" endtime="20180825 21:35:44.789" starttime="20180825 21:35:03.945"></status>
+<test id="s1-s1-s1-s1-s1-t2" name="tc2_analyseAndConvertExistingJtlLog">
+<kw name="Analyse Jtl Convert" library="JMeterLib">
+<doc>Parses JMeter log file. Converts results into HTML and SQLite format.</doc>
+<arguments>
+<arg>${outputResults}/tc1_justRunJMeter.jtl</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20180825 23:41:13.897" level="INFO">Opening log file D:/00_Workspace/04_RobotFrameWork/01_Python/RF_E2E_Testing/outputResults/tc1_justRunJMeter.jtl
+Log file format: csv
+Extracting samples and assertions from D:/00_Workspace/04_RobotFrameWork/01_Python/RF_E2E_Testing/outputResults/tc1_justRunJMeter.jtl
+Calculating statistical values
+Creating html D:/00_Workspace/04_RobotFrameWork/01_Python/RF_E2E_Testing/outputResults/tc1_justRunJMeter.jtl20180825181110.html
+Creating SQLite DB file D:/00_Workspace/04_RobotFrameWork/01_Python/RF_E2E_Testing/outputResults/tc1_justRunJMeter.jtl20180825181110.sql</msg>
+<msg timestamp="20180825 23:41:13.898" level="INFO">${result} = [{'samplesSuccessRateNoAssert': 100, 'minTime': 84, 'assertions': 0, 'samples': 31, 'averageTime': 3301, 'maxTime': 6598, 'assertionPassRate': 0, 'samplesSuccessRateInclAssert': 100}, {'totalTime': 40...</msg>
+<status status="PASS" endtime="20180825 23:41:13.899" starttime="20180825 23:41:10.181"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg timestamp="20180825 23:41:13.905" level="INFO">[{'samplesSuccessRateNoAssert': 100, 'minTime': 84, 'assertions': 0, 'samples': 31, 'averageTime': 3301, 'maxTime': 6598, 'assertionPassRate': 0, 'samplesSuccessRateInclAssert': 100}, {'totalTime': 405.18, 'samplesErrorInclAssert': 0, 'sampleName': 'Visit TutorialsPoint Home Page', 'averageBytes': 35417, 'median': 104, 'bytesPerSec': 961.5158694901031, 'samplesErrorNoAssert': 0, 'throughput': '0.03', 'startTime': datetime.datetime(2018, 8, 25, 23, 26, 31, 881000), 'timeTable': [181, 256, 190, 103, 84, 95, 219, 136, 89, 86, 104], 'percentil90': 256, 'endTime': datetime.datetime(2018, 8, 25, 23, 33, 17, 61000), 'kBytesPerSec': '1.0', 'stddev': '58.2', 'samplesSuccessRateInclAssert': 100, 'samplesSuccessRateNoAssert': 100}, {'totalTime': 61.253, 'samplesErrorInclAssert': 0, 'sampleName': 'HTTP Request', 'averageBytes': 44457, 'median': 4916, 'bytesPerSec': 14515.860447651543, 'samplesErrorNoAssert': 0, 'throughput': '0.33', 'startTime': datetime.datetime(2018, 8, 25, 23, 40, 8, 366000), 'timeTable': [5141, 5058, 4921, 5580, 5010, 5429, 6093, 5696, 6441, 6598, 4175, 4453, 4091, 4816, 4441, 4344, 4085, 4694, 4911, 4833], 'percentil90': 6598, 'endTime': datetime.datetime(2018, 8, 25, 23, 41, 5, 619000), 'kBytesPerSec': '14.5', 'stddev': '720.3', 'samplesSuccessRateInclAssert': 100, 'samplesSuccessRateNoAssert': 100}, {'totalTime': 877.738, 'samplesErrorInclAssert': 0, 'sampleName': 'TOTAL', 'averageBytes': 41249, 'median': 4441, 'bytesPerSec': 1456.8436139257956, 'samplesErrorNoAssert': 0, 'throughput': '0.04', 'startTime': datetime.datetime(2018, 8, 25, 23, 26, 31, 881000), 'timeTable': [181, 256, 190, 103, 84, 95, 219, 136, 89, 86, 104, 5141, 5058, 4921, 5580, 5010, 5429, 6093, 5696, 6441, 6598, 4175, 4453, 4091, 4816, 4441, 4344, 4085, 4694, 4911, 4833], 'percentil90': 6093, 'endTime': datetime.datetime(2018, 8, 25, 23, 41, 5, 619000), 'kBytesPerSec': '1.5', 'stddev': '2415.2', 'samplesSuccessRateInclAssert': 100, 'samplesSuccessRateNoAssert': 100}]</msg>
+<status status="PASS" endtime="20180825 23:41:13.906" starttime="20180825 23:41:13.903"></status>
+</kw>
+<kw type="for" name="${ELEMENT} IN [ @{result} ]">
+<kw type="foritem" name="${ELEMENT} = {'samplesSuccessRateNoAssert': 100, 'minTime': 84, 'assertions': 0, 'samples': 31, 'averageTime': 3301, 'maxTime': 6598, 'assertionPassRate': 0, 'samplesSuccessRateInclAssert': 100}">
+<kw name="Log Dictionary" library="Collections">
+<doc>Logs the size and contents of the ``dictionary`` using given ``level``.</doc>
+<arguments>
+<arg>${ELEMENT}</arg>
+</arguments>
+<msg timestamp="20180825 23:41:13.909" level="INFO">Dictionary size is 8 and it contains following items:
+assertionPassRate: 0
+assertions: 0
+averageTime: 3301
+maxTime: 6598
+minTime: 84
+samples: 31
+samplesSuccessRateInclAssert: 100
+samplesSuccessRateNoAssert: 100</msg>
+<status status="PASS" endtime="20180825 23:41:13.910" starttime="20180825 23:41:13.908"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${ELEMENT}</arg>
+<arg>samplesSuccessRateInclAssert</arg>
+</arguments>
+<assign>
+<var>${check}</var>
+</assign>
+<msg timestamp="20180825 23:41:13.912" level="INFO">${check} = 100</msg>
+<status status="PASS" endtime="20180825 23:41:13.912" starttime="20180825 23:41:13.911"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${check}</arg>
+</arguments>
+<status status="PASS" endtime="20180825 23:41:13.914" starttime="20180825 23:41:13.913"></status>
+</kw>
+<status status="PASS" endtime="20180825 23:41:13.915" starttime="20180825 23:41:13.907"></status>
+</kw>
+<kw type="foritem" name="${ELEMENT} = {'totalTime': 405.18, 'samplesErrorInclAssert': 0, 'sampleName': 'Visit TutorialsPoint Home Page', 'averageBytes': 35417, 'median': 104, 'bytesPerSec': 961.5158694901031, 'samplesErrorNoAssert': 0, 't...">
+<kw name="Log Dictionary" library="Collections">
+<doc>Logs the size and contents of the ``dictionary`` using given ``level``.</doc>
+<arguments>
+<arg>${ELEMENT}</arg>
+</arguments>
+<msg timestamp="20180825 23:41:13.917" level="INFO">Dictionary size is 16 and it contains following items:
+averageBytes: 35417
+bytesPerSec: 961.51586949
+endTime: 2018-08-25 23:33:17.061000
+kBytesPerSec: 1.0
+median: 104
+percentil90: 256
+sampleName: Visit TutorialsPoint Home Page
+samplesErrorInclAssert: 0
+samplesErrorNoAssert: 0
+samplesSuccessRateInclAssert: 100
+samplesSuccessRateNoAssert: 100
+startTime: 2018-08-25 23:26:31.881000
+stddev: 58.2
+throughput: 0.03
+timeTable: [181, 256, 190, 103, 84, 95, 219, 136, 89, 86, 104]
+totalTime: 405.18</msg>
+<status status="PASS" endtime="20180825 23:41:13.918" starttime="20180825 23:41:13.916"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${ELEMENT}</arg>
+<arg>samplesSuccessRateInclAssert</arg>
+</arguments>
+<assign>
+<var>${check}</var>
+</assign>
+<msg timestamp="20180825 23:41:13.919" level="INFO">${check} = 100</msg>
+<status status="PASS" endtime="20180825 23:41:13.919" starttime="20180825 23:41:13.918"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${check}</arg>
+</arguments>
+<status status="PASS" endtime="20180825 23:41:13.921" starttime="20180825 23:41:13.920"></status>
+</kw>
+<status status="PASS" endtime="20180825 23:41:13.921" starttime="20180825 23:41:13.916"></status>
+</kw>
+<kw type="foritem" name="${ELEMENT} = {'totalTime': 61.253, 'samplesErrorInclAssert': 0, 'sampleName': 'HTTP Request', 'averageBytes': 44457, 'median': 4916, 'bytesPerSec': 14515.860447651543, 'samplesErrorNoAssert': 0, 'throughput': '0.3...">
+<kw name="Log Dictionary" library="Collections">
+<doc>Logs the size and contents of the ``dictionary`` using given ``level``.</doc>
+<arguments>
+<arg>${ELEMENT}</arg>
+</arguments>
+<msg timestamp="20180825 23:41:13.923" level="INFO">Dictionary size is 16 and it contains following items:
+averageBytes: 44457
+bytesPerSec: 14515.8604477
+endTime: 2018-08-25 23:41:05.619000
+kBytesPerSec: 14.5
+median: 4916
+percentil90: 6598
+sampleName: HTTP Request
+samplesErrorInclAssert: 0
+samplesErrorNoAssert: 0
+samplesSuccessRateInclAssert: 100
+samplesSuccessRateNoAssert: 100
+startTime: 2018-08-25 23:40:08.366000
+stddev: 720.3
+throughput: 0.33
+timeTable: [5141, 5058, 4921, 5580, 5010, 5429, 6093, 5696, 6441, 6598, 4175, 4453, 4091, 4816, 4441, 4344, 4085, 4694, 4911, 4833]
+totalTime: 61.253</msg>
+<status status="PASS" endtime="20180825 23:41:13.923" starttime="20180825 23:41:13.922"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${ELEMENT}</arg>
+<arg>samplesSuccessRateInclAssert</arg>
+</arguments>
+<assign>
+<var>${check}</var>
+</assign>
+<msg timestamp="20180825 23:41:13.924" level="INFO">${check} = 100</msg>
+<status status="PASS" endtime="20180825 23:41:13.924" starttime="20180825 23:41:13.923"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${check}</arg>
+</arguments>
+<status status="PASS" endtime="20180825 23:41:13.926" starttime="20180825 23:41:13.925"></status>
+</kw>
+<status status="PASS" endtime="20180825 23:41:13.927" starttime="20180825 23:41:13.921"></status>
+</kw>
+<kw type="foritem" name="${ELEMENT} = {'totalTime': 877.738, 'samplesErrorInclAssert': 0, 'sampleName': 'TOTAL', 'averageBytes': 41249, 'median': 4441, 'bytesPerSec': 1456.8436139257956, 'samplesErrorNoAssert': 0, 'throughput': '0.04', 's...">
+<kw name="Log Dictionary" library="Collections">
+<doc>Logs the size and contents of the ``dictionary`` using given ``level``.</doc>
+<arguments>
+<arg>${ELEMENT}</arg>
+</arguments>
+<msg timestamp="20180825 23:41:13.929" level="INFO">Dictionary size is 16 and it contains following items:
+averageBytes: 41249
+bytesPerSec: 1456.84361393
+endTime: 2018-08-25 23:41:05.619000
+kBytesPerSec: 1.5
+median: 4441
+percentil90: 6093
+sampleName: TOTAL
+samplesErrorInclAssert: 0
+samplesErrorNoAssert: 0
+samplesSuccessRateInclAssert: 100
+samplesSuccessRateNoAssert: 100
+startTime: 2018-08-25 23:26:31.881000
+stddev: 2415.2
+throughput: 0.04
+timeTable: [181, 256, 190, 103, 84, 95, 219, 136, 89, 86, 104, 5141, 5058, 4921, 5580, 5010, 5429, 6093, 5696, 6441, 6598, 4175, 4453, 4091, 4816, 4441, 4344, 4085, 4694, 4911, 4833]
+totalTime: 877.738</msg>
+<status status="PASS" endtime="20180825 23:41:13.929" starttime="20180825 23:41:13.928"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${ELEMENT}</arg>
+<arg>samplesSuccessRateInclAssert</arg>
+</arguments>
+<assign>
+<var>${check}</var>
+</assign>
+<msg timestamp="20180825 23:41:13.931" level="INFO">${check} = 100</msg>
+<status status="PASS" endtime="20180825 23:41:13.931" starttime="20180825 23:41:13.930"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${check}</arg>
+</arguments>
+<status status="PASS" endtime="20180825 23:41:13.933" starttime="20180825 23:41:13.932"></status>
+</kw>
+<status status="PASS" endtime="20180825 23:41:13.933" starttime="20180825 23:41:13.927"></status>
+</kw>
+<status status="PASS" endtime="20180825 23:41:13.934" starttime="20180825 23:41:13.906"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${check}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180825 23:41:13.935" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180825 23:41:13.936" level="FAIL">100 != 200</msg>
+<status status="FAIL" endtime="20180825 23:41:13.936" starttime="20180825 23:41:13.934"></status>
+</kw>
+<status status="FAIL" endtime="20180825 23:41:13.937" critical="yes" starttime="20180825 23:41:10.179">100 != 200</status>
+</test>
+<test id="s1-s1-s1-s1-s1-t3" name="tc3_runJMeterAndAnalyseAndConvertLog">
+<kw name="Run Jmeter Analyse Jtl Convert" library="JMeterLib">
+<doc>Runs JMeter and parses log file. Converts results into HTML and SQLite format.</doc>
+<arguments>
+<arg>${jMeterStartup}</arg>
+<arg>${jmxFileLocation}</arg>
+<arg>${outputResults}/tc3_runJMeterAndAnalyseAndConvertLog.jtl</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20180825 23:41:25.901" level="INFO">Starting JMeter with following parameters:
+ - JMeter path: C:/Jmeter/bin/jmeter.bat
+ - Test plan path: D:/00_Workspace/07_Jmeter/00_SampleTestCases/etrain.info.jmx
+ - Log file path: D:/00_Workspace/04_RobotFrameWork/01_Python/RF_E2E_Testing/outputResults/tc3_runJMeterAndAnalyseAndConvertLog.jtl
+ - Other parameters:  .
+subprocess.call input list: [u'C:/Jmeter/bin/jmeter.bat', '-n', '-t', u'D:/00_Workspace/07_Jmeter/00_SampleTestCases/etrain.info.jmx', '-l', u'D:/00_Workspace/04_RobotFrameWork/01_Python/RF_E2E_Testing/outputResults/tc3_runJMeterAndAnalyseAndConvertLog.jtl']
+Value returned by JMeter: 0
+Opening log file D:/00_Workspace/04_RobotFrameWork/01_Python/RF_E2E_Testing/outputResults/tc3_runJMeterAndAnalyseAndConvertLog.jtl
+Log file format: csv
+Extracting samples and assertions from D:/00_Workspace/04_RobotFrameWork/01_Python/RF_E2E_Testing/outputResults/tc3_runJMeterAndAnalyseAndConvertLog.jtl
+Calculating statistical values
+Creating html D:/00_Workspace/04_RobotFrameWork/01_Python/RF_E2E_Testing/outputResults/tc3_runJMeterAndAnalyseAndConvertLog.jtl20180825181122.html
+Creating SQLite DB file D:/00_Workspace/04_RobotFrameWork/01_Python/RF_E2E_Testing/outputResults/tc3_runJMeterAndAnalyseAndConvertLog.jtl20180825181122.sql</msg>
+<msg timestamp="20180825 23:41:25.904" level="INFO">${result} = [{'samplesSuccessRateNoAssert': 100, 'minTime': 77, 'assertions': 0, 'samples': 25, 'averageTime': 3562, 'maxTime': 5044, 'assertionPassRate': 0, 'samplesSuccessRateInclAssert': 100}, {'totalTime': 0....</msg>
+<status status="PASS" endtime="20180825 23:41:25.905" starttime="20180825 23:41:13.940"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg timestamp="20180825 23:41:25.910" level="INFO">[{'samplesSuccessRateNoAssert': 100, 'minTime': 77, 'assertions': 0, 'samples': 25, 'averageTime': 3562, 'maxTime': 5044, 'assertionPassRate': 0, 'samplesSuccessRateInclAssert': 100}, {'totalTime': 0.707, 'samplesErrorInclAssert': 0, 'sampleName': 'Visit TutorialsPoint Home Page', 'averageBytes': 35417, 'median': 99, 'bytesPerSec': 250473.8330975955, 'samplesErrorNoAssert': 0, 'throughput': '7.07', 'startTime': datetime.datetime(2018, 8, 25, 23, 33, 22, 287000), 'timeTable': [196, 121, 99, 77, 88], 'percentil90': 196, 'endTime': datetime.datetime(2018, 8, 25, 23, 33, 22, 994000), 'kBytesPerSec': '250.5', 'stddev': '42.5', 'samplesSuccessRateInclAssert': 100, 'samplesSuccessRateNoAssert': 100}, {'totalTime': 61.252, 'samplesErrorInclAssert': 0, 'sampleName': 'HTTP Request', 'averageBytes': 44457, 'median': 4377, 'bytesPerSec': 14516.09743355319, 'samplesErrorNoAssert': 0, 'throughput': '0.33', 'startTime': datetime.datetime(2018, 8, 25, 23, 40, 20, 992000), 'timeTable': [4474, 4545, 4457, 3844, 4028, 4375, 4291, 4012, 3837, 4256, 4113, 4380, 4355, 4965, 4584, 4808, 5044, 4350, 4769, 4988], 'percentil90': 5044, 'endTime': datetime.datetime(2018, 8, 25, 23, 41, 17, 244000), 'kBytesPerSec': '14.5', 'stddev': '351.4', 'samplesSuccessRateInclAssert': 100, 'samplesSuccessRateNoAssert': 100}, {'totalTime': 479.957, 'samplesErrorInclAssert': 0, 'sampleName': 'TOTAL', 'averageBytes': 42649, 'median': 4350, 'bytesPerSec': 2221.5010928062306, 'samplesErrorNoAssert': 0, 'throughput': '0.05', 'startTime': datetime.datetime(2018, 8, 25, 23, 33, 22, 287000), 'timeTable': [196, 121, 99, 77, 88, 4474, 4545, 4457, 3844, 4028, 4375, 4291, 4012, 3837, 4256, 4113, 4380, 4355, 4965, 4584, 4808, 5044, 4350, 4769, 4988], 'percentil90': 4988, 'endTime': datetime.datetime(2018, 8, 25, 23, 41, 17, 244000), 'kBytesPerSec': '2.2', 'stddev': '1751.6', 'samplesSuccessRateInclAssert': 100, 'samplesSuccessRateNoAssert': 100}]</msg>
+<status status="PASS" endtime="20180825 23:41:25.913" starttime="20180825 23:41:25.906"></status>
+</kw>
+<kw type="for" name="${ELEMENT} IN [ @{result} ]">
+<kw type="foritem" name="${ELEMENT} = {'samplesSuccessRateNoAssert': 100, 'minTime': 77, 'assertions': 0, 'samples': 25, 'averageTime': 3562, 'maxTime': 5044, 'assertionPassRate': 0, 'samplesSuccessRateInclAssert': 100}">
+<kw name="Log Dictionary" library="Collections">
+<doc>Logs the size and contents of the ``dictionary`` using given ``level``.</doc>
+<arguments>
+<arg>${ELEMENT}</arg>
+</arguments>
+<msg timestamp="20180825 23:41:25.921" level="INFO">Dictionary size is 8 and it contains following items:
+assertionPassRate: 0
+assertions: 0
+averageTime: 3562
+maxTime: 5044
+minTime: 77
+samples: 25
+samplesSuccessRateInclAssert: 100
+samplesSuccessRateNoAssert: 100</msg>
+<status status="PASS" endtime="20180825 23:41:25.922" starttime="20180825 23:41:25.919"></status>
+</kw>
+<status status="PASS" endtime="20180825 23:41:25.924" starttime="20180825 23:41:25.918"></status>
+</kw>
+<kw type="foritem" name="${ELEMENT} = {'totalTime': 0.707, 'samplesErrorInclAssert': 0, 'sampleName': 'Visit TutorialsPoint Home Page', 'averageBytes': 35417, 'median': 99, 'bytesPerSec': 250473.8330975955, 'samplesErrorNoAssert': 0, 'thr...">
+<kw name="Log Dictionary" library="Collections">
+<doc>Logs the size and contents of the ``dictionary`` using given ``level``.</doc>
+<arguments>
+<arg>${ELEMENT}</arg>
+</arguments>
+<msg timestamp="20180825 23:41:25.929" level="INFO">Dictionary size is 16 and it contains following items:
+averageBytes: 35417
+bytesPerSec: 250473.833098
+endTime: 2018-08-25 23:33:22.994000
+kBytesPerSec: 250.5
+median: 99
+percentil90: 196
+sampleName: Visit TutorialsPoint Home Page
+samplesErrorInclAssert: 0
+samplesErrorNoAssert: 0
+samplesSuccessRateInclAssert: 100
+samplesSuccessRateNoAssert: 100
+startTime: 2018-08-25 23:33:22.287000
+stddev: 42.5
+throughput: 7.07
+timeTable: [196, 121, 99, 77, 88]
+totalTime: 0.707</msg>
+<status status="PASS" endtime="20180825 23:41:25.930" starttime="20180825 23:41:25.927"></status>
+</kw>
+<status status="PASS" endtime="20180825 23:41:25.931" starttime="20180825 23:41:25.926"></status>
+</kw>
+<kw type="foritem" name="${ELEMENT} = {'totalTime': 61.252, 'samplesErrorInclAssert': 0, 'sampleName': 'HTTP Request', 'averageBytes': 44457, 'median': 4377, 'bytesPerSec': 14516.09743355319, 'samplesErrorNoAssert': 0, 'throughput': '0.33...">
+<kw name="Log Dictionary" library="Collections">
+<doc>Logs the size and contents of the ``dictionary`` using given ``level``.</doc>
+<arguments>
+<arg>${ELEMENT}</arg>
+</arguments>
+<msg timestamp="20180825 23:41:25.937" level="INFO">Dictionary size is 16 and it contains following items:
+averageBytes: 44457
+bytesPerSec: 14516.0974336
+endTime: 2018-08-25 23:41:17.244000
+kBytesPerSec: 14.5
+median: 4377
+percentil90: 5044
+sampleName: HTTP Request
+samplesErrorInclAssert: 0
+samplesErrorNoAssert: 0
+samplesSuccessRateInclAssert: 100
+samplesSuccessRateNoAssert: 100
+startTime: 2018-08-25 23:40:20.992000
+stddev: 351.4
+throughput: 0.33
+timeTable: [4474, 4545, 4457, 3844, 4028, 4375, 4291, 4012, 3837, 4256, 4113, 4380, 4355, 4965, 4584, 4808, 5044, 4350, 4769, 4988]
+totalTime: 61.252</msg>
+<status status="PASS" endtime="20180825 23:41:25.938" starttime="20180825 23:41:25.935"></status>
+</kw>
+<status status="PASS" endtime="20180825 23:41:25.939" starttime="20180825 23:41:25.934"></status>
+</kw>
+<kw type="foritem" name="${ELEMENT} = {'totalTime': 479.957, 'samplesErrorInclAssert': 0, 'sampleName': 'TOTAL', 'averageBytes': 42649, 'median': 4350, 'bytesPerSec': 2221.5010928062306, 'samplesErrorNoAssert': 0, 'throughput': '0.05', 's...">
+<kw name="Log Dictionary" library="Collections">
+<doc>Logs the size and contents of the ``dictionary`` using given ``level``.</doc>
+<arguments>
+<arg>${ELEMENT}</arg>
+</arguments>
+<msg timestamp="20180825 23:41:25.944" level="INFO">Dictionary size is 16 and it contains following items:
+averageBytes: 42649
+bytesPerSec: 2221.50109281
+endTime: 2018-08-25 23:41:17.244000
+kBytesPerSec: 2.2
+median: 4350
+percentil90: 4988
+sampleName: TOTAL
+samplesErrorInclAssert: 0
+samplesErrorNoAssert: 0
+samplesSuccessRateInclAssert: 100
+samplesSuccessRateNoAssert: 100
+startTime: 2018-08-25 23:33:22.287000
+stddev: 1751.6
+throughput: 0.05
+timeTable: [196, 121, 99, 77, 88, 4474, 4545, 4457, 3844, 4028, 4375, 4291, 4012, 3837, 4256, 4113, 4380, 4355, 4965, 4584, 4808, 5044, 4350, 4769, 4988]
+totalTime: 479.957</msg>
+<status status="PASS" endtime="20180825 23:41:25.945" starttime="20180825 23:41:25.941"></status>
+</kw>
+<status status="PASS" endtime="20180825 23:41:25.947" starttime="20180825 23:41:25.940"></status>
+</kw>
+<status status="PASS" endtime="20180825 23:41:25.949" starttime="20180825 23:41:25.915"></status>
+</kw>
+<status status="PASS" endtime="20180825 23:41:25.950" critical="yes" starttime="20180825 23:41:13.938"></status>
+</test>
+<status status="FAIL" endtime="20180825 23:41:25.954" starttime="20180825 23:41:01.509"></status>
 </suite>
-<status status="PASS" endtime="20180825 21:35:44.794" starttime="20180825 21:35:03.924"></status>
+<status status="FAIL" endtime="20180825 23:41:25.966" starttime="20180825 23:41:01.504"></status>
 </suite>
-<status status="PASS" endtime="20180825 21:35:44.798" starttime="20180825 21:35:03.916"></status>
+<status status="FAIL" endtime="20180825 23:41:25.977" starttime="20180825 23:41:01.499"></status>
 </suite>
-<status status="PASS" endtime="20180825 21:35:44.802" starttime="20180825 21:35:03.907"></status>
+<status status="FAIL" endtime="20180825 23:41:25.988" starttime="20180825 23:41:01.493"></status>
 </suite>
-<status status="PASS" endtime="20180825 21:35:44.806" starttime="20180825 21:35:03.843"></status>
+<status status="FAIL" endtime="20180825 23:41:25.998" starttime="20180825 23:41:01.462"></status>
 </suite>
 <statistics>
 <total>
-<stat fail="0" pass="1">Critical Tests</stat>
-<stat fail="0" pass="1">All Tests</stat>
+<stat fail="1" pass="2">Critical Tests</stat>
+<stat fail="1" pass="2">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat fail="0" id="s1" name="RF E2E Testing" pass="1">RF E2E Testing</stat>
-<stat fail="0" id="s1-s1" name="testSuites" pass="1">RF E2E Testing.testSuites</stat>
-<stat fail="0" id="s1-s1-s1" name="web TCs" pass="1">RF E2E Testing.testSuites.web TCs</stat>
-<stat fail="0" id="s1-s1-s1-s1" name="Etrain" pass="1">RF E2E Testing.testSuites.web TCs.Etrain</stat>
-<stat fail="0" id="s1-s1-s1-s1-s1" name="Searchbetweenstations" pass="1">RF E2E Testing.testSuites.web TCs.Etrain.Searchbetweenstations</stat>
+<stat fail="1" id="s1" name="RF E2E Testing" pass="2">RF E2E Testing</stat>
+<stat fail="1" id="s1-s1" name="testSuites" pass="2">RF E2E Testing.testSuites</stat>
+<stat fail="1" id="s1-s1-s1" name="performances TCs" pass="2">RF E2E Testing.testSuites.performances TCs</stat>
+<stat fail="1" id="s1-s1-s1-s1" name="Etrain" pass="2">RF E2E Testing.testSuites.performances TCs.Etrain</stat>
+<stat fail="1" id="s1-s1-s1-s1-s1" name="Etrain Performance" pass="2">RF E2E Testing.testSuites.performances TCs.Etrain.Etrain Performance</stat>
 </suite>
 </statistics>
 <errors>

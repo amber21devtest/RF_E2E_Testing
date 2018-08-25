@@ -15,7 +15,7 @@ Resource    ../../../resources/web/pageObjects/etrain/objetrainHome.robot
 Test Teardown    Close Browser
 
 *** Variables ***
-${METHOD}  WEB
+${METHOD}  MOBILE
 ${URL}  https:\\etrain.info\
 ${BROWSER}  chrome
 

@@ -1,0 +1,583 @@
+
+<!DOCTYPE html>
+<!--
+Log file parsed and converted by Robot Framework JMeter lib released under LGPL license.
+Website: http://sourceforge.net/projects/rf-jmeter-py/
+-->
+<html>
+<head>
+<title>jmeterTestDifferentSamplers_xml.jtl.html</title>
+<style>
+
+#samples
+{
+    font-family:Arial;
+    width:100%;
+    border-collapse:collapse;
+}
+#samples td, #samples th
+{
+    font-size:1em;
+    border:1px solid #00A3CC;
+    padding:3px 7px 2px 7px;
+}
+#samples th
+{
+	font-size:1.1em;
+	text-align:left;
+	padding-top:5px;
+	padding-bottom:4px;
+	background-color:#00A3CC;
+	color:#ffffff;
+}
+#samples tr.even td
+{
+	color:#000000;
+	background-color:#D1EEF6;
+}
+#assertions
+{
+	font-family:Arial;
+	width:100%;
+	border-collapse:collapse;
+}
+#assertions td, #assertions th
+{
+	font-size:0.8em;
+	border:1px solid #AADAEB;
+	padding:3px 7px 2px 7px;
+}
+#assertions th
+{
+	font-size:0.9em;
+	tempHtml = tempHtml + "text-align:left;
+	padding-top:5px;
+	padding-bottom:4px;
+	background-color:#AADAEB;
+	color:#ffffff;
+}
+#assertions tr.even td
+{
+	color:#000000;
+	background-color:#E7F4FA;
+}
+#menu
+{
+	position:fixed;
+	top:0px;
+	width:100%;
+	height:50px;
+}
+#belowmenu
+{
+	margin-top:28px;
+}
+#summary
+{
+	font-family:Arial;
+	font-size:1em;
+	width:100%;
+	border-collapse:collapse;
+}
+#navifont
+{
+	font-family:Arial;
+	font-size:1.1em;
+	font-weight:bold;
+}
+#justsmallfont
+{
+	font-family:Arial;
+	font-size:0.9em;
+}
+        
+</style>
+</head>
+<body>
+
+<script>
+function BarChart (canvasID) {
+    this.debug = false;
+    this.label = "";
+	this.defineColors();
+    this.canvas=document.getElementById(canvasID);
+    this.context=this.canvas.getContext("2d");
+	this.chartData=new Array();
+	this.startX = 55;
+	this.startY = 560;
+	this.maxX = 795;
+	this.maxY = 25
+}
+
+BarChart.prototype.addData = function(av,me,ni,mi,ma)
+{
+    this.chartData[0] = av
+	this.chartData[1] = me
+	this.chartData[2] = ni
+	this.chartData[3] = mi
+	this.chartData[4] = ma
+}
+
+BarChart.prototype.calculateWidth = function() {
+    this.barWidth = (this.maxX - this.startX)/7
+}
+
+BarChart.prototype.calculateHeightStep = function() {
+    if(this.chartData[4]>0){
+        this.heightStep = (this.startY-this.maxY)/(1.1*this.chartData[4])
+	}
+}
+
+BarChart.prototype.defineColors = function() {
+    this.bgColor = "#000000";
+	this.bgColor2 = "#B8B8B8";
+	this.bgLight = "#FFFFFF";
+    this.colorAverage = "#AF3E19";
+	this.colorMedian = "#0033CC";
+	this.color90 = "#006600";
+	this.colorMin = "#AAAAAA";
+	this.colorMax = "#474747";
+}
+
+BarChart.prototype.setLabel = function(l) {
+    this.label = l;
+}
+
+BarChart.prototype.drawChartArea = function() {
+    this.context.beginPath();
+    this.context.lineWidth=2;
+    this.context.moveTo(this.startX,this.startY)
+    this.context.lineTo(this.maxX,this.startY)
+	this.context.lineTo(this.maxX,this.maxY)
+	this.context.lineTo(this.startX,this.maxY)
+	this.context.moveTo(this.startX,this.startY)
+	this.context.lineTo(this.startX,this.maxY)
+    this.context.strokeStyle=this.bgColor;
+    this.context.stroke();
+	this.context.fillStyle=this.bgColor;
+	this.context.font="20px Arial";
+	this.context.fillText("Response time graph - " + this.label,(this.maxX - this.startX - 550)/2,this.maxY-10);
+	this.drawLabels();
+	this.context.save();
+	this.context.translate(0, -200);
+	this.context.rotate(90*Math.PI/180);
+	this.context.fillStyle=this.bgColor;
+	this.context.font="15px Arial";
+	this.context.fillText("miliseconds",450,0);
+	this.context.restore();
+	lineStep = (this.startY - this.maxY)/15
+	for (var i=0;i<15;i++){
+	    this.drawSingleHorizontalLine(this.startY - i*lineStep)
+	}
+}
+
+BarChart.prototype.drawLabels = function() {
+	this.context.fillStyle=this.bgColor;
+	this.context.font="15px Arial";
+	this.context.fillText("Average",this.startX + 1*this.barWidth + 15,this.startY+35);
+	this.context.fillText("Median",this.startX + 2*this.barWidth + 15,this.startY+35);
+	this.context.fillText("90% Line",this.startX + 3*this.barWidth + 15,this.startY+35);
+	this.context.fillText("Min",this.startX + 4*this.barWidth + 15,this.startY+35);
+	this.context.fillText("Max",this.startX + 5*this.barWidth + 15,this.startY+35);
+	this.context.fillStyle=this.colorAverage;
+	this.context.fillRect(this.startX + 1*this.barWidth,this.startY+25,10,10);
+	this.context.fillStyle=this.colorMedian;
+    this.context.fillRect(this.startX + 2*this.barWidth,this.startY+25,10,10);
+	this.context.fillStyle=this.color90;
+    this.context.fillRect(this.startX + 3*this.barWidth,this.startY+25,10,10);
+	this.context.fillStyle=this.colorMin;
+    this.context.fillRect(this.startX + 4*this.barWidth,this.startY+25,10,10);
+	this.context.fillStyle=this.colorMax;
+	this.context.fillRect(this.startX + 5*this.barWidth,this.startY+25,10,10);
+}
+
+BarChart.prototype.drawSingleRect = function(color,text,startingX,startingY,width,height) {
+	this.context.fillStyle=color;
+    this.context.fillRect(startingX,startingY,width,-height);
+	this.context.font="15px Arial";
+	if((height)>15){
+	    this.context.fillStyle=this.bgLight;
+	    this.context.fillText(text,startingX + (width-25)/2,startingY - height +12);
+	}
+	else{
+	    this.context.fillStyle=this.bgColor
+	    this.context.fillText(text,startingX + (width-25)/2,startingY - height - 2);
+	}
+}
+
+BarChart.prototype.addYScale = function() {
+	this.context.fillStyle=this.bgColor;
+	this.context.font="15px Arial";
+	this.context.fillText("0",(this.startX)-40,this.startY);
+	this.context.fillText(this.chartData[4],(this.startX)-40,this.startY-(this.heightStep*this.chartData[4]));
+}
+
+BarChart.prototype.drawSingleHorizontalLine = function(yStart) {
+	this.context.beginPath()
+    this.context.lineWidth=1;
+	this.context.moveTo(this.startX,yStart)
+    this.context.lineTo(this.maxX,yStart)
+    this.context.strokeStyle=this.bgColor2;
+    this.context.stroke();
+}
+
+BarChart.prototype.drawChartData = function() {
+    this.drawSingleRect(this.colorAverage,this.chartData[0],this.startX + this.barWidth,this.startY,this.barWidth,this.heightStep*this.chartData[0]);
+	this.drawSingleRect(this.colorMedian,this.chartData[1],this.startX + 2*this.barWidth,this.startY,this.barWidth,this.heightStep*this.chartData[1]);
+	this.drawSingleRect(this.color90,this.chartData[2],this.startX + 3*this.barWidth,this.startY,this.barWidth,this.heightStep*this.chartData[2]);
+	this.drawSingleRect(this.colorMin,this.chartData[3],this.startX + 4*this.barWidth,this.startY,this.barWidth,this.heightStep*this.chartData[3]);
+	this.drawSingleRect(this.colorMax,this.chartData[4],this.startX + 5*this.barWidth,this.startY,this.barWidth,this.heightStep*this.chartData[4]);
+}
+
+BarChart.prototype.createChart = function() {
+    this.calculateWidth();
+	this.calculateHeightStep();
+    this.addYScale();
+    this.drawChartArea();
+	this.drawChartData();
+}
+
+function LineChart (canvasID) {
+    this.debug = false;
+    this.label = "";
+	this.bgColor = "#000000";
+	this.bgColor2 = "#B8B8B8";
+    this.canvas=document.getElementById(canvasID);
+    this.context=this.canvas.getContext("2d");
+	this.chartData=new Array();
+	this.startX = 55;
+	this.startY = 560;
+	this.maxX = 795;
+	this.maxY = 25;
+}
+
+LineChart.prototype.addData = function(d)
+{
+    arrayIndex = this.chartData.length;
+	this.chartData[arrayIndex] = d;
+}
+
+LineChart.prototype.setColor = function(c) {
+    this.color = c;
+}
+
+LineChart.prototype.setLabel = function(l) {
+    this.label = l;
+}
+
+LineChart.prototype.calculateStep = function() {
+    this.minData = this.chartData[0];
+	this.maxData = 0;
+	this.dataLen = 0;
+	for (var i=0;i<this.chartData.length;i++)
+    {
+		this.dataLen = i;
+		if(this.minData>this.chartData[i])
+		{
+		    this.minData = this.chartData[i];
+		}
+		if(this.maxData<this.chartData[i])
+		{
+		    this.maxData = this.chartData[i];
+		}
+    }
+	this.stepX = (this.maxX - this.startX - 2)/this.dataLen;
+	this.stepY = (this.startY - this.maxY - 2)/(this.maxData - this.minData + 2);
+	if(this.debug==true)
+	{
+	    document.write("<br>minData = " + this.minData + "<br>");
+	    document.write("maxData = " + this.maxData + "<br>");
+	    document.write("dataLen = " + this.dataLen + "<br>");
+	    document.write("stepX = " + this.stepX + "<br>");
+		document.write("stepY = " + this.stepY + "<br>");
+	}
+}
+
+LineChart.prototype.drawChartArea = function() {
+    this.context.beginPath();
+    this.context.lineWidth=2;
+    this.context.moveTo(this.startX,this.startY);
+    this.context.lineTo(this.maxX,this.startY);
+	this.context.lineTo(this.maxX,this.maxY);
+	this.context.lineTo(this.startX,this.maxY);
+	this.context.moveTo(this.startX,this.startY);
+	this.context.lineTo(this.startX,this.maxY);
+    this.context.strokeStyle=this.bgColor;
+    this.context.stroke();
+	this.context.fillStyle=this.bgColor;
+	this.context.font="20px Arial";
+	this.context.fillText("Response time graph",(this.maxX - this.startX - 85)/2,this.maxY-10);
+	this.drawLabels();
+	this.context.save();
+	this.context.translate(0, -200);
+	this.context.rotate(90*Math.PI/180);
+	this.context.fillStyle=this.bgColor;
+	this.context.font="15px Arial";
+	this.context.fillText("miliseconds",450,0);
+	this.context.restore();
+}
+
+LineChart.prototype.drawLabels = function() {
+	this.context.fillStyle=this.bgColor;
+	this.context.font="15px Arial";
+	this.context.fillText(this.label,(this.maxX - this.startX - 65)/2,this.startY+35);
+	this.context.fillStyle=this.color;
+    this.context.fillRect((this.maxX - this.startX - 90)/2,this.startY+25,10,10);
+}
+
+LineChart.prototype.testChartData = function() {
+    if(this.debug==true)
+	{
+        document.write("<br><br>");
+        for (var i=0;i<this.chartData.length;i++)
+        {
+            document.write(this.chartData[i] + "<br>");
+        }
+	}
+}
+
+LineChart.prototype.addYScale = function() {
+	this.context.fillStyle=this.bgColor;
+	this.context.font="15px Arial";
+	this.context.fillText(this.minData-1,(this.startX)-40,this.startY);
+    this.context.fillText(this.maxData+1,(this.startX)-40,this.maxY+10);
+	if((this.maxData - this.minData)<20){
+        this.drawMiddleHelpLine();
+	}
+	else if((this.maxData - this.minData)<50){
+	    this.drawMiddleHelpLine();
+        this.drawQuarterHelpLines();
+    }
+	else{
+	    this.drawMiddleHelpLine();
+        this.drawQuarterHelpLines();
+		this.drawOneEightsHelpLines();
+	}
+}
+
+LineChart.prototype.drawMiddleHelpLine = function() {
+	this.drawSingleHorizontalLine(0.5);
+}
+
+LineChart.prototype.drawQuarterHelpLines = function() {
+    this.drawSingleHorizontalLine(0.75);
+	this.drawSingleHorizontalLine(0.25);
+}
+
+LineChart.prototype.drawOneEightsHelpLines = function() {
+    this.drawSingleHorizontalLine(0.875);
+	this.drawSingleHorizontalLine(0.625);
+	this.drawSingleHorizontalLine(0.375);
+	this.drawSingleHorizontalLine(0.125);
+}
+
+LineChart.prototype.drawSingleHorizontalLine = function(factor) {
+	data = this.minData+((this.maxData - this.minData)*factor);
+	loc = this.startY-this.stepY-((data-this.minData)*this.stepY);
+	this.context.beginPath();
+    this.context.lineWidth=1;
+	this.context.moveTo(this.startX,loc);
+    this.context.lineTo(this.maxX,loc);
+    this.context.strokeStyle=this.bgColor2;
+    this.context.stroke();
+	data = Math.round(data);
+	this.context.fillText(data,(this.startX)-40,loc);
+}
+
+LineChart.prototype.drawChartData = function() {
+   	this.context.beginPath();
+    this.context.lineWidth=1;
+	this.context.strokeStyle=this.color;
+    for (var i=0;i<this.chartData.length;i++)
+    {
+		this.context.lineTo(this.startX+(i*this.stepX),this.startY-this.stepY-((this.chartData[i]-this.minData)*this.stepY));
+	    this.context.stroke();
+    }
+}
+
+LineChart.prototype.createChart = function() {
+    this.calculateStep();
+    this.testChartData();
+    this.addYScale();
+    this.drawChartArea();
+}
+</script>
+        
+<div id="menu"><table id="samples"><tr class="even">
+<td><a href="#info">Info</a></td>
+<td><a href="#sumrep">Summary report</a></td>
+<td>
+        <a href="#aggrrep">Aggregated report and graph</a>
+</td>
+<td>
+        <a href="#aggrsam">Aggregated samples</a>
+</td>
+<td>
+        <a href="#respgr">Response time graph</a>
+</td>
+<td>
+        <a href="#samples_">All samples</a>
+</td>
+<td></tr></table></div>
+        
+<div id="belowmenu"><a id="info"> </a><br><table id="samples">
+<tr><td><p id="navifont">Info</p><p>File <i>D:/00_Workspace/04_RobotFrameWork/01_Python/RF_E2E_Testing/outputResults/tc1_justRunJMeter.jtl</i> parsed and converted by <a href=http://robotframework.org target=_blank>Robot Framework</a> <a href=https://github.com/kowalpy/Robot-Framework-JMeter-Library target=_blank>JMeter library </a> on 2018-08-25 23:40:15.</p>
+<table id="samples">
+<tr><th>Samples</th><th>Assertions</th><th>Samples success rate</th>
+<th>Samples success rate<br>(inlcuding assertions)</th><th>Assertions pass rate</th>
+<th>Average time [ms]</th><th>Min time</th><th>Max time</th></tr><tr><td>21</td><td>0</td><td>100 %</td><td>100 %</td><td>0 %</td><td>2738 ms</td><td>84 ms</td><td>6598 ms</td></table></p><a id="sumrep"><p id="navifont">Summary report </p></a><br>
+<table id="samples">
+<tr><th>Label</th><th>#Samples</th><th>Average</th><th>Min</th><th>Max</th>
+<th>Std. Dev.</th><th>Error %</th><th>Error % incl. assert.</th><th>Throughput</th>
+<th>KB/sec</th><th>Avg. Bytes</th></tr><td><a href="#aggr0">Visit TutorialsPoint Home Page</a></td><td>11</td><td>140 ms</td><td>84 ms</td><td>256 ms</td><td>58.2</td><td>0 %</td><td>0 %</td><td>0.03/sec</td><td>1.0KB/sec</td><td>35417</td></tr><td><a href="#aggr1">HTTP Request</a></td><td>10</td><td>5596 ms</td><td>4921 ms</td><td>6598 ms</td><td>574.3</td><td>0 %</td><td>0 %</td><td>1.72/sec</td><td>76.7KB/sec</td><td>44457</td></tr><td><a href="#samples_">TOTAL</a></td><td>21</td><td>2738 ms</td><td>84 ms</td><td>6598 ms</td><td>2754.1</td><td>0 %</td><td>0 %</td><td>0.03/sec</td><td>1.0KB/sec</td><td>39721</td></tr></table><a id="aggrrep"><p id="navifont">Aggregated report and graph </p></a>
+<table id="samples">
+<tr><th>Label</th><th>#Samples</th><th>Average</th><th>Median</th><th>90% Line</th>
+<th>Min</th><th>Max</th><th>Error %</th><th>Error % incl. assert.</th><th>Throughput</th>
+<th>KB/sec</th></tr><td><a href="#aggr0">Visit TutorialsPoint Home Page</a></td><td>11</td><td>140 ms</td><td>104 ms</td><td>256 ms</td><td>84 ms</td><td>256 ms</td><td>0 %</td><td>0 %</td><td>0.03/sec</td><td>1.0KB/sec </td></tr><td><a href="#aggr1">HTTP Request</a></td><td>10</td><td>5596 ms</td><td>5504 ms</td><td>6598 ms</td><td>4921 ms</td><td>6598 ms</td><td>0 %</td><td>0 %</td><td>1.72/sec</td><td>76.7KB/sec </td></tr><td><a href="#samples_">TOTAL</a></td><td>21</td><td>2738 ms</td><td>256 ms</td><td>6441 ms</td><td>84 ms</td><td>6598 ms</td><td>0 %</td><td>0 %</td><td>0.03/sec</td><td>1.0KB/sec </td></tr></table><br>
+<br><br><canvas id="aggrRep1" width="800" height="600">Your browser does not support the HTML5 canvas tag.</canvas><br>
+
+<script>
+var bc1 = new BarChart("aggrRep1");
+bc1.setLabel("Visit TutorialsPoint Home Page");
+bc1.addData(140,104,256,84,256);
+bc1.createChart();
+</script>
+
+<br><br><canvas id="aggrRep2" width="800" height="600">Your browser does not support the HTML5 canvas tag.</canvas><br>
+
+<script>
+var bc2 = new BarChart("aggrRep2");
+bc2.setLabel("HTTP Request");
+bc2.addData(5596,5504,6598,4921,6598);
+bc2.createChart();
+</script>
+
+<br><br><canvas id="aggrRep3" width="800" height="600">Your browser does not support the HTML5 canvas tag.</canvas><br>
+
+<script>
+var bc3 = new BarChart("aggrRep3");
+bc3.setLabel("TOTAL");
+bc3.addData(2738,256,6441,84,6598);
+bc3.createChart();
+</script>
+<a id="aggrsam"><p id="navifont">Aggregated samples </p></a><a id="aggr0"><p id="navifont">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visit TutorialsPoint Home Page </p></a><br><table id="samples">
+
+<tr><th>Start time</th><th>Sample time (ms)</th><th>Label</th>
+<th>Response code</th><th>Response message</th>
+<th>Thread name</th><th>Data type</th>
+<th>Status</th><th>Bytes</th><th>Latency</th></tr><tr><td>2018-08-25 23:26:31.881000</td><td>181</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-1</td><td>text</td><td>true</td><td>35417</td><td>178</td></tr>
+<tr class="even" ><td>2018-08-25 23:31:02.614000</td><td>256</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-1</td><td>text</td><td>true</td><td>35417</td><td>180</td></tr>
+<tr><td>2018-08-25 23:31:02.697000</td><td>190</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-2</td><td>text</td><td>true</td><td>35417</td><td>98</td></tr>
+<tr class="even" ><td>2018-08-25 23:31:02.899000</td><td>103</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-3</td><td>text</td><td>true</td><td>35417</td><td>43</td></tr>
+<tr><td>2018-08-25 23:31:03.098000</td><td>84</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-4</td><td>text</td><td>true</td><td>35417</td><td>39</td></tr>
+<tr class="even" ><td>2018-08-25 23:31:03.299000</td><td>95</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-5</td><td>text</td><td>true</td><td>35417</td><td>57</td></tr>
+<tr><td>2018-08-25 23:33:16.367000</td><td>219</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-1</td><td>text</td><td>true</td><td>35417</td><td>181</td></tr>
+<tr class="even" ><td>2018-08-25 23:33:16.462000</td><td>136</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-2</td><td>text</td><td>true</td><td>35417</td><td>86</td></tr>
+<tr><td>2018-08-25 23:33:16.659000</td><td>89</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-3</td><td>text</td><td>true</td><td>35417</td><td>47</td></tr>
+<tr class="even" ><td>2018-08-25 23:33:16.861000</td><td>86</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-4</td><td>text</td><td>true</td><td>35417</td><td>48</td></tr>
+<tr><td>2018-08-25 23:33:17.061000</td><td>104</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-5</td><td>text</td><td>true</td><td>35417</td><td>51</td></tr>
+</table><a id="aggr1"><p id="navifont">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HTTP Request </p></a><br><table id="samples">
+
+<tr><th>Start time</th><th>Sample time (ms)</th><th>Label</th>
+<th>Response code</th><th>Response message</th>
+<th>Thread name</th><th>Data type</th>
+<th>Status</th><th>Bytes</th><th>Latency</th></tr><tr><td>2018-08-25 23:40:08.366000</td><td>5141</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-6</td><td>text</td><td>true</td><td>44457</td><td>325</td></tr>
+<tr class="even" ><td>2018-08-25 23:40:08.467000</td><td>5058</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-7</td><td>text</td><td>true</td><td>44457</td><td>313</td></tr>
+<tr><td>2018-08-25 23:40:08.571000</td><td>4921</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-8</td><td>text</td><td>true</td><td>44457</td><td>318</td></tr>
+<tr class="even" ><td>2018-08-25 23:40:07.968000</td><td>5580</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-2</td><td>text</td><td>true</td><td>44457</td><td>589</td></tr>
+<tr><td>2018-08-25 23:40:08.668000</td><td>5010</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-9</td><td>text</td><td>true</td><td>44457</td><td>313</td></tr>
+<tr class="even" ><td>2018-08-25 23:40:08.266000</td><td>5429</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-5</td><td>text</td><td>true</td><td>44457</td><td>333</td></tr>
+<tr><td>2018-08-25 23:40:07.960000</td><td>6093</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-1</td><td>text</td><td>true</td><td>44457</td><td>594</td></tr>
+<tr class="even" ><td>2018-08-25 23:40:08.767000</td><td>5696</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-10</td><td>text</td><td>true</td><td>44457</td><td>316</td></tr>
+<tr><td>2018-08-25 23:40:08.166000</td><td>6441</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-4</td><td>text</td><td>true</td><td>44457</td><td>460</td></tr>
+<tr class="even" ><td>2018-08-25 23:40:08.065000</td><td>6598</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-3</td><td>text</td><td>true</td><td>44457</td><td>491</td></tr>
+</table><a id="respgr"><p id="navifont">Response time graph </p></a><p id="justsmallfont"> Charts are generated only after clicking buttons because drawing might be time consuming!</p> <button onclick="lc1.drawChartData()">DRAW CHART for Visit TutorialsPoint Home Page</button><br><br><canvas id="respTime1" width="800" height="600" >Your browser does not support the HTML5 canvas tag. </canvas><br><br><br>
+<script>
+var lc1= new LineChart("respTime1");
+lc1.setLabel("Visit TutorialsPoint Home Page");
+lc1.setColor("#00A3CC");
+lc1.addData(181);
+lc1.addData(256);
+lc1.addData(190);
+lc1.addData(103);
+lc1.addData(84);
+lc1.addData(95);
+lc1.addData(219);
+lc1.addData(136);
+lc1.addData(89);
+lc1.addData(86);
+lc1.addData(104);
+lc1.createChart();
+</script>
+ <button onclick="lc2.drawChartData()">DRAW CHART for HTTP Request</button><br><br><canvas id="respTime2" width="800" height="600" >Your browser does not support the HTML5 canvas tag. </canvas><br><br><br>
+<script>
+var lc2= new LineChart("respTime2");
+lc2.setLabel("HTTP Request");
+lc2.setColor("#00A3CC");
+lc2.addData(5141);
+lc2.addData(5058);
+lc2.addData(4921);
+lc2.addData(5580);
+lc2.addData(5010);
+lc2.addData(5429);
+lc2.addData(6093);
+lc2.addData(5696);
+lc2.addData(6441);
+lc2.addData(6598);
+lc2.createChart();
+</script>
+ <button onclick="lc3.drawChartData()">DRAW CHART for TOTAL</button><br><br><canvas id="respTime3" width="800" height="600" >Your browser does not support the HTML5 canvas tag. </canvas><br><br><br>
+<script>
+var lc3= new LineChart("respTime3");
+lc3.setLabel("TOTAL");
+lc3.setColor("#00A3CC");
+lc3.addData(181);
+lc3.addData(256);
+lc3.addData(190);
+lc3.addData(103);
+lc3.addData(84);
+lc3.addData(95);
+lc3.addData(219);
+lc3.addData(136);
+lc3.addData(89);
+lc3.addData(86);
+lc3.addData(104);
+lc3.addData(5141);
+lc3.addData(5058);
+lc3.addData(4921);
+lc3.addData(5580);
+lc3.addData(5010);
+lc3.addData(5429);
+lc3.addData(6093);
+lc3.addData(5696);
+lc3.addData(6441);
+lc3.addData(6598);
+lc3.createChart();
+</script>
+<br><a id="samples_"><p id="navifont">All samples </p></a><table id="samples">
+
+<tr><th>Start time</th><th>Sample time (ms)</th><th>Label</th>
+<th>Response code</th><th>Response message</th>
+<th>Thread name</th><th>Data type</th>
+<th>Status</th><th>Bytes</th><th>Latency</th></tr><tr><td>2018-08-25 23:26:31.881000</td><td>181</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-1</td><td>text</td><td>true</td><td>35417</td><td>178</td></tr>
+<tr class="even" ><td>2018-08-25 23:31:02.614000</td><td>256</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-1</td><td>text</td><td>true</td><td>35417</td><td>180</td></tr>
+<tr><td>2018-08-25 23:31:02.697000</td><td>190</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-2</td><td>text</td><td>true</td><td>35417</td><td>98</td></tr>
+<tr class="even" ><td>2018-08-25 23:31:02.899000</td><td>103</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-3</td><td>text</td><td>true</td><td>35417</td><td>43</td></tr>
+<tr><td>2018-08-25 23:31:03.098000</td><td>84</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-4</td><td>text</td><td>true</td><td>35417</td><td>39</td></tr>
+<tr class="even" ><td>2018-08-25 23:31:03.299000</td><td>95</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-5</td><td>text</td><td>true</td><td>35417</td><td>57</td></tr>
+<tr><td>2018-08-25 23:33:16.367000</td><td>219</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-1</td><td>text</td><td>true</td><td>35417</td><td>181</td></tr>
+<tr class="even" ><td>2018-08-25 23:33:16.462000</td><td>136</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-2</td><td>text</td><td>true</td><td>35417</td><td>86</td></tr>
+<tr><td>2018-08-25 23:33:16.659000</td><td>89</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-3</td><td>text</td><td>true</td><td>35417</td><td>47</td></tr>
+<tr class="even" ><td>2018-08-25 23:33:16.861000</td><td>86</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-4</td><td>text</td><td>true</td><td>35417</td><td>48</td></tr>
+<tr><td>2018-08-25 23:33:17.061000</td><td>104</td><td>Visit TutorialsPoint Home Page</td><td>200</td><td>OK</td><td>Users 1-5</td><td>text</td><td>true</td><td>35417</td><td>51</td></tr>
+<tr class="even" ><td>2018-08-25 23:40:08.366000</td><td>5141</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-6</td><td>text</td><td>true</td><td>44457</td><td>325</td></tr>
+<tr><td>2018-08-25 23:40:08.467000</td><td>5058</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-7</td><td>text</td><td>true</td><td>44457</td><td>313</td></tr>
+<tr class="even" ><td>2018-08-25 23:40:08.571000</td><td>4921</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-8</td><td>text</td><td>true</td><td>44457</td><td>318</td></tr>
+<tr><td>2018-08-25 23:40:07.968000</td><td>5580</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-2</td><td>text</td><td>true</td><td>44457</td><td>589</td></tr>
+<tr class="even" ><td>2018-08-25 23:40:08.668000</td><td>5010</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-9</td><td>text</td><td>true</td><td>44457</td><td>313</td></tr>
+<tr><td>2018-08-25 23:40:08.266000</td><td>5429</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-5</td><td>text</td><td>true</td><td>44457</td><td>333</td></tr>
+<tr class="even" ><td>2018-08-25 23:40:07.960000</td><td>6093</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-1</td><td>text</td><td>true</td><td>44457</td><td>594</td></tr>
+<tr><td>2018-08-25 23:40:08.767000</td><td>5696</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-10</td><td>text</td><td>true</td><td>44457</td><td>316</td></tr>
+<tr class="even" ><td>2018-08-25 23:40:08.166000</td><td>6441</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-4</td><td>text</td><td>true</td><td>44457</td><td>460</td></tr>
+<tr><td>2018-08-25 23:40:08.065000</td><td>6598</td><td>HTTP Request</td><td>200</td><td>OK</td><td>Users 1-3</td><td>text</td><td>true</td><td>44457</td><td>491</td></tr>
+</body></html>
