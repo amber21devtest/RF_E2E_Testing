@@ -8,6 +8,7 @@
     <referencedLibrary type="PYTHON" name="RequestsLibrary" path="C:/Python27/Lib/site-packages"/>
     <referencedLibrary type="PYTHON" name="AppiumLibrary" path="C:/Python27/Lib/site-packages"/>
     <referencedLibrary type="PYTHON" name="sauceclient" path="C:/Python27/Lib/site-packages"/>
+    <referencedLibrary type="PYTHON" name="requests" path="C:/Python27/Lib/site-packages"/>
     <pythonpath/>
     <classpath/>
     <excludedForValidation/>

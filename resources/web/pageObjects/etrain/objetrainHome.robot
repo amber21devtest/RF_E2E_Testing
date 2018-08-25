@@ -12,23 +12,26 @@ Library    BuiltIn
 Library    ExcelLibrary 
 Library    OperatingSystem
 Library    robot.api.logger
+Resource    ../../../mobile/mConnection.robot    
 
 *** Variables ***
-${Browser}  chrome
-${url}   https://etrain.info/
+#${Browser}  chrome
+#${url}   https://etrain.info/
 ${inputDir}  D:\\00_Workspace\\04_RobotFrameWork\\01_Python\\RF_E2E_Testing
 ${sFileName}  ${inputDir}/resources/input/etrain/${fileName}
 ${fileName}  sourceDestination.xls
 ${sheetName}  srcdstn
+${strWeb}  WEB
+${strMOBILE}  MOBILE
 
  
 *** Keywords ***
 Open Browser and activate home page
-     Open Browser    ${url}  ${Browser}
-     Maximize Browser Window
+     [Arguments]    ${method}  ${url}  ${Browser}   
+      Run Keyword If    '${method}'=='${strWeb}'       Excute web execution steps    ${url}  ${Browser}
+      Run Keyword If    '${method}'=='${strMOBILE}'    Excute mobileweb execution steps  ${url}      
      
     
-
 Enter the source and destination stations
     Open Excel    ${sFileName}  useTempDir=False
     ${rCount}  Get Row Count  	${sheetName}
@@ -36,8 +39,21 @@ Enter the source and destination stations
      \  ${c1Value}  Read Cell Data By Coordinates    ${sheetName}    0   ${x}     
      \  ${c2Value}  Read Cell Data By Coordinates    ${sheetName}    1   ${x}    
      \  Input Text    name=station1    ${c1Value}
+     \  Press Key     name=station2    \\09
      \  Input Text    name=station2    ${c2Value}
-     \  Click Element    id=tbssbmtbtn
-     log  hello 
+     \  Press Key     name=station2    \\09
+     \  Click Button     id=tbssbmtbtn   
+
+
+
+Excute web execution steps 
+    [Arguments]     ${url}  ${Browser}   
+     Open Browser    ${url}  ${Browser}  
+     Maximize Browser Window    
+     
+Excute mobileweb execution steps
+    [Arguments]     ${url}    
+    Connect to the Mobile 
+    go to    ${url}
     
    

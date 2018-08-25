@@ -14,13 +14,15 @@ Library           robot.api.logger
 Resource    ../../../resources/web/pageObjects/etrain/objetrainHome.robot
 
 
-
 *** Variables ***
+${METHOD}  MOBILE
+${URL}  https:\\etrain.info\
+${BROWSER}  chrome
 
 
 *** Test Cases ***
 Search trains between stations       
-  Open Browser and activate home page
+  Open Browser and activate home page    ${METHOD}    ${URL}    ${BROWSER}
   Enter the source and destination stations
 
   
