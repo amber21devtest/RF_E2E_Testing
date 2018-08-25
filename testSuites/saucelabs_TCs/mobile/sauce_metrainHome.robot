@@ -1,33 +1,28 @@
+###############################################
+#Author : Ambarish Majee
+#Date Created : 08/21/2018
+#Date Modified : 08/21/2018
+#Modifications
+#Created the login fucntionality test case
+###############################################
+
 *** Settings ***
-Library           AppiumLibrary
-Library           sauceclient 
-Test Teardown    Close Application
+Documentation    This test is to have the data driven test between pair of stations 
+Library           ExcelLibrary
+Library           OperatingSystem
+Library           robot.api.logger
+Resource    ../../../resources/web/pageObjects/etrain/objetrainHome.robot
+Resource    ../../../resources/mobile/mSauceConnection.robot
+Test Teardown    Close Browser
+
 *** Variables ***
-${USERNAME}     amber21testdev
-${KEY}  6b34c98e-d08d-40ed-9a87-3d1a1f08dddb
-${PLATFORM_NAME}    Android
-${DEVICE_NAME}    Android Emulator
-${PLATFOPRM_VERSION}  6.0
-${BROWSER_NAME}  chrome
-${REMOTE_URL}     http://${USERNAME}:${KEY}@ondemand.saucelabs.com:80/wd/hub
-${ANDRIOD_PACKAGE}  com.android.chrome
-${url}   https://etrain.info/
+${METHOD}  MOBILE
+${URL}  https:\\etrain.info\
+${BROWSER}  chrome
+
 
 *** Test Cases ***
-This test case is to test the web mobile
-    Open etrain browser in mobile
-
-*** Keywords ***
-Open etrain browser in mobile
-
-    Open Application    ${REMOTE_URL}    platformName=${PLATFORM_NAME}  deviceName=${DEVICE_NAME}   browserName=${BROWSER_NAME}  androidPackage=${ANDRIOD_PACKAGE}           
-    # id=com.android.chrome:id/url_bar
-  Input Text    id=com.android.chrome:id/url_bar    etrain.info
-  Tap    id=com.android.chrome:id/url_bar    709    1107
-# id=tbsfi1
-  Input Text    id=tbsfi1    CHENNAI
-  Tap    id=tbsfi1    235    367
-# id=tbsfi3
-  Input Text    id=tbsfi3    RANCHI
-  Tap    id=tbsfi3    180    411
-  Tap    id=tbsfi3    375    448  
+Mobile web testing in sauce lab infrastructure 
+    Connect to the sauce lab Mobile  
+    go to    ${url}
+    Enter the source and destination stations
