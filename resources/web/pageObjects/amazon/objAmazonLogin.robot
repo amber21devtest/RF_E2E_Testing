@@ -9,30 +9,38 @@
 Documentation  Page Object Amazon Log in page 
 Library    Selenium2Library    
 Library    BuiltIn  
-
+Resource    ../../../mobile/mConnection.robot 
 
 *** Variables ***
-${Browser}  chrome
-${url}   https://www.amazon.in/
-${userName}  amber21devtest@gmail.com    
-${passWord}  Welcome_01
+${strWeb}  WEB
+${strMOBILE}  MOBILE
 
 
 *** Keywords ***
 Open Browser to Log in
-     Open Browser    ${url}  ${Browser}
-     Maximize Browser Window
-     Click Element    xpath=.//*[@id='nav-link-yourAccount']/span[2] 
+     [Arguments]   ${method}  ${url}  ${Browser}
+      Run Keyword If    '${method}'=='${strWeb}'        Excute Amazonweb execution steps     ${url}  ${Browser}
+      Run Keyword If    '${method}'=='${strMOBILE}'    Excute Amazonmobileweb execution steps  ${url}    
+            Click Element    xpath=.//*[@id='nav-link-yourAccount']/span[2] 
     
 
 Enter the User Name and Password
+    [Arguments]    ${userName}  ${passWord}
     Input Text    xpath=.//*[@id='ap_email']    ${userName}
     Click Element    xpath=.//*[@id='continue']
     Input Text    xpath=.//*[@id='ap_password']    ${passWord}
     Click Element    xpath=//*[@id="signInSubmit"]
     #Close All Browsers
      
-    
+ Excute Amazonweb execution steps 
+    [Arguments]     ${url}  ${Browser}   
+     Open Browser    ${url}  ${Browser}  
+     Maximize Browser Window    
+     
+Excute Amazonmobileweb execution steps
+    [Arguments]     ${url}    
+    Connect to the Mobile 
+    go to    ${url}   
   
     
 

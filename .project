@@ -16,6 +16,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>libspecs/ExcelLibrary.py</name>
+			<type>1</type>
+			<location>C:/Python27/Lib/site-packages/ExcelLibrary/__init__.py</location>
+		</link>
+		<link>
 			<name>libspecs/Selenium2Library.py</name>
 			<type>1</type>
 			<location>C:/Python27/Lib/site-packages/Selenium2Library/__init__.py</location>

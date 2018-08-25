@@ -12,10 +12,10 @@ Library           ExcelLibrary
 Library           OperatingSystem
 Library           robot.api.logger
 Resource    ../../../resources/web/pageObjects/etrain/objetrainHome.robot
-
+Test Teardown    Close Browser
 
 *** Variables ***
-${METHOD}  MOBILE
+${METHOD}  WEB
 ${URL}  https:\\etrain.info\
 ${BROWSER}  chrome
 

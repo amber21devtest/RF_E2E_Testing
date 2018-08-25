@@ -1,7 +1,7 @@
 *** Settings ***
 Library           AppiumLibrary
 Library           sauceclient 
-
+Test Teardown    Close Application
 *** Variables ***
 ${USERNAME}     amber21testdev
 ${KEY}  6b34c98e-d08d-40ed-9a87-3d1a1f08dddb

@@ -38,10 +38,11 @@ Enter the source and destination stations
     : FOR    ${x}    IN RANGE    1    ${rCount}
      \  ${c1Value}  Read Cell Data By Coordinates    ${sheetName}    0   ${x}     
      \  ${c2Value}  Read Cell Data By Coordinates    ${sheetName}    1   ${x}    
-     \  Input Text    name=station1    ${c1Value}
-     \  Press Key     name=station2    \\09
-     \  Input Text    name=station2    ${c2Value}
-     \  Press Key     name=station2    \\09
+     \  Input Text    id=tbsfi1    ${c1Value}
+     \  sleep  5
+     \  Press key  id=tbsfi1  \\13
+     \  Input Text    id=tbsfi3    ${c2Value}
+     \  press key   id=tbsfi3  \\13 
      \  Click Button     id=tbssbmtbtn   
 
 

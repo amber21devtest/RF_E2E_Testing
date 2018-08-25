@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20180825 12:17:08.860" generator="Robot 3.0.4 (Python 2.7.15 on win32)">
+<robot generated="20180825 21:35:03.760" generator="Robot 3.0.4 (Python 2.7.15 on win32)">
 <suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing" id="s1" name="RF E2E Testing">
 <suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites" id="s1-s1" name="testSuites">
 <suite source="D:\00_Workspace\04_RobotFrameWork\01_Python\RF_E2E_Testing\testSuites\web_TCs" id="s1-s1-s1" name="web TCs">
@@ -20,7 +20,27 @@
 <arg>${url}</arg>
 <arg>${Browser}</arg>
 </arguments>
-<status status="PASS" endtime="20180825 12:17:12.034" starttime="20180825 12:17:12.032"></status>
+<kw name="Excute web execution steps" library="objetrainHome">
+<arguments>
+<arg>${url}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${url}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20180825 21:35:04.714" level="INFO">Opening browser 'chrome' to base url 'https:\etrain.info'</msg>
+<status status="PASS" endtime="20180825 21:35:27.606" starttime="20180825 21:35:04.713"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" endtime="20180825 21:35:29.161" starttime="20180825 21:35:27.608"></status>
+</kw>
+<status status="PASS" endtime="20180825 21:35:29.163" starttime="20180825 21:35:04.710"></status>
+</kw>
+<status status="PASS" endtime="20180825 21:35:29.164" starttime="20180825 21:35:04.707"></status>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
@@ -29,100 +49,130 @@
 <arg>Excute mobileweb execution steps</arg>
 <arg>${url}</arg>
 </arguments>
-<kw name="Excute mobileweb execution steps" library="objetrainHome">
-<arguments>
-<arg>${url}</arg>
-</arguments>
-<kw name="Connect to the Mobile" library="mConnection">
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<arguments>
-<arg>androidPackage</arg>
-<arg>com.android.chrome</arg>
-</arguments>
-<assign>
-<var>${Options}</var>
-</assign>
-<msg timestamp="20180825 12:17:12.044" level="INFO">${Options} = {u'androidPackage': u'com.android.chrome'}</msg>
-<status status="PASS" endtime="20180825 12:17:12.045" starttime="20180825 12:17:12.041"></status>
+<status status="PASS" endtime="20180825 21:35:29.167" starttime="20180825 21:35:29.166"></status>
 </kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" endtime="20180825 21:35:29.169" starttime="20180825 21:35:04.704"></status>
+</kw>
+<kw name="Enter the source and destination stations" library="objetrainHome">
+<kw name="Open Excel" library="ExcelLibrary">
+<doc>Opens the Excel file from the path provided in the file name parameter.</doc>
 <arguments>
-<arg>chromeOptions</arg>
-<arg>${Options}</arg>
+<arg>${sFileName}</arg>
+<arg>useTempDir=False</arg>
+</arguments>
+<status status="PASS" endtime="20180825 21:35:29.197" starttime="20180825 21:35:29.173"></status>
+</kw>
+<kw name="Get Row Count" library="ExcelLibrary">
+<doc>Returns the specific number of rows of the sheet name specified.</doc>
+<arguments>
+<arg>${sheetName}</arg>
 </arguments>
 <assign>
-<var>${capbilities}</var>
+<var>${rCount}</var>
 </assign>
-<msg timestamp="20180825 12:17:12.049" level="INFO">${capbilities} = {u'chromeOptions': {u'androidPackage': u'com.android.chrome'}}</msg>
-<status status="PASS" endtime="20180825 12:17:12.049" starttime="20180825 12:17:12.046"></status>
+<msg timestamp="20180825 21:35:29.201" level="INFO">${rCount} = 2</msg>
+<status status="PASS" endtime="20180825 21:35:29.201" starttime="20180825 21:35:29.198"></status>
 </kw>
-<kw name="Set To Dictionary" library="Collections">
-<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<kw type="for" name="${x} IN RANGE [ 1 | ${rCount} ]">
+<kw type="foritem" name="${x} = 1">
+<kw name="Read Cell Data By Coordinates" library="ExcelLibrary">
+<doc>Uses the column and row to return the data from that cell.</doc>
 <arguments>
-<arg>${capbilities}</arg>
-<arg>platformName</arg>
-<arg>Android</arg>
+<arg>${sheetName}</arg>
+<arg>0</arg>
+<arg>${x}</arg>
 </arguments>
-<status status="PASS" endtime="20180825 12:17:12.053" starttime="20180825 12:17:12.051"></status>
+<assign>
+<var>${c1Value}</var>
+</assign>
+<msg timestamp="20180825 21:35:29.208" level="INFO">${c1Value} = CHENNAI CENTRAL</msg>
+<status status="PASS" endtime="20180825 21:35:29.208" starttime="20180825 21:35:29.206"></status>
 </kw>
-<kw name="Set To Dictionary" library="Collections">
-<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<kw name="Read Cell Data By Coordinates" library="ExcelLibrary">
+<doc>Uses the column and row to return the data from that cell.</doc>
 <arguments>
-<arg>${capbilities}</arg>
-<arg>deviceName</arg>
-<arg>galaxy_nexus</arg>
+<arg>${sheetName}</arg>
+<arg>1</arg>
+<arg>${x}</arg>
 </arguments>
-<status status="PASS" endtime="20180825 12:17:12.055" starttime="20180825 12:17:12.054"></status>
+<assign>
+<var>${c2Value}</var>
+</assign>
+<msg timestamp="20180825 21:35:29.212" level="INFO">${c2Value} = RANCHI</msg>
+<status status="PASS" endtime="20180825 21:35:29.213" starttime="20180825 21:35:29.210"></status>
 </kw>
-<kw name="Set To Dictionary" library="Collections">
-<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
 <arguments>
-<arg>${capbilities}</arg>
-<arg>browserName</arg>
-<arg>chrome</arg>
+<arg>id=tbsfi1</arg>
+<arg>${c1Value}</arg>
 </arguments>
-<status status="PASS" endtime="20180825 12:17:12.058" starttime="20180825 12:17:12.056"></status>
+<msg timestamp="20180825 21:35:29.215" level="INFO">Typing text 'CHENNAI CENTRAL' into text field 'id=tbsfi1'</msg>
+<status status="PASS" endtime="20180825 21:35:33.159" starttime="20180825 21:35:29.214"></status>
 </kw>
-<kw name="Create Webdriver" library="Selenium2Library">
-<doc>Creates an instance of a WebDriver.</doc>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
 <arguments>
-<arg>Remote</arg>
-<arg>command_executor=http://127.0.0.1:4723/wd/hub</arg>
-<arg>desired_capabilities=${capbilities}</arg>
+<arg>5</arg>
 </arguments>
-<msg timestamp="20180825 12:17:12.061" level="INFO">Creating an instance of the Remote WebDriver</msg>
-<status status="PASS" endtime="20180825 12:18:04.670" starttime="20180825 12:17:12.059"></status>
+<msg timestamp="20180825 21:35:38.163" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" endtime="20180825 21:35:38.164" starttime="20180825 21:35:33.160"></status>
 </kw>
-<status status="PASS" endtime="20180825 12:18:04.672" starttime="20180825 12:17:12.040"></status>
-</kw>
-<kw name="Go To" library="Selenium2Library">
-<doc>Navigates the active browser instance to the provided URL.</doc>
+<kw name="Press Key" library="Selenium2Library">
+<doc>Simulates user pressing key on element identified by `locator`.</doc>
 <arguments>
-<arg>${url}</arg>
+<arg>id=tbsfi1</arg>
+<arg>\\13</arg>
 </arguments>
-<msg timestamp="20180825 12:18:04.674" level="INFO">Opening url 'https:\etrain.info'</msg>
-<status status="PASS" endtime="20180825 12:19:10.839" starttime="20180825 12:18:04.673"></status>
+<status status="PASS" endtime="20180825 21:35:38.331" starttime="20180825 21:35:38.165"></status>
 </kw>
-<status status="PASS" endtime="20180825 12:19:10.840" starttime="20180825 12:17:12.038"></status>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=tbsfi3</arg>
+<arg>${c2Value}</arg>
+</arguments>
+<msg timestamp="20180825 21:35:38.333" level="INFO">Typing text 'RANCHI' into text field 'id=tbsfi3'</msg>
+<status status="PASS" endtime="20180825 21:35:39.928" starttime="20180825 21:35:38.332"></status>
 </kw>
-<status status="PASS" endtime="20180825 12:19:10.842" starttime="20180825 12:17:12.035"></status>
+<kw name="Press Key" library="Selenium2Library">
+<doc>Simulates user pressing key on element identified by `locator`.</doc>
+<arguments>
+<arg>id=tbsfi3</arg>
+<arg>\\13</arg>
+</arguments>
+<status status="PASS" endtime="20180825 21:35:40.087" starttime="20180825 21:35:39.930"></status>
 </kw>
-<status status="PASS" endtime="20180825 12:19:10.844" starttime="20180825 12:17:12.021"></status>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>id=tbssbmtbtn</arg>
+</arguments>
+<msg timestamp="20180825 21:35:40.089" level="INFO">Clicking button 'id=tbssbmtbtn'.</msg>
+<status status="PASS" endtime="20180825 21:35:41.466" starttime="20180825 21:35:40.088"></status>
 </kw>
-<status status="PASS" endtime="20180825 12:19:10.845" critical="yes" starttime="20180825 12:17:12.001"></status>
+<status status="PASS" endtime="20180825 21:35:41.467" starttime="20180825 21:35:29.205"></status>
+</kw>
+<status status="PASS" endtime="20180825 21:35:41.468" starttime="20180825 21:35:29.202"></status>
+</kw>
+<status status="PASS" endtime="20180825 21:35:41.469" starttime="20180825 21:35:29.171"></status>
+</kw>
+<kw type="teardown" name="Close Browser" library="Selenium2Library">
+<doc>Closes the current browser.</doc>
+<status status="PASS" endtime="20180825 21:35:44.784" starttime="20180825 21:35:41.470"></status>
+</kw>
+<status status="PASS" endtime="20180825 21:35:44.786" critical="yes" starttime="20180825 21:35:04.697"></status>
 </test>
 <doc>This test is to have the data driven test between pair of stations</doc>
-<status status="PASS" endtime="20180825 12:19:10.850" starttime="20180825 12:17:10.373"></status>
+<status status="PASS" endtime="20180825 21:35:44.789" starttime="20180825 21:35:03.945"></status>
 </suite>
-<status status="PASS" endtime="20180825 12:19:10.862" starttime="20180825 12:17:10.363"></status>
+<status status="PASS" endtime="20180825 21:35:44.794" starttime="20180825 21:35:03.924"></status>
 </suite>
-<status status="PASS" endtime="20180825 12:19:10.870" starttime="20180825 12:17:10.354"></status>
+<status status="PASS" endtime="20180825 21:35:44.798" starttime="20180825 21:35:03.916"></status>
 </suite>
-<status status="PASS" endtime="20180825 12:19:10.878" starttime="20180825 12:17:10.336"></status>
+<status status="PASS" endtime="20180825 21:35:44.802" starttime="20180825 21:35:03.907"></status>
 </suite>
-<status status="PASS" endtime="20180825 12:19:10.885" starttime="20180825 12:17:10.225"></status>
+<status status="PASS" endtime="20180825 21:35:44.806" starttime="20180825 21:35:03.843"></status>
 </suite>
 <statistics>
 <total>
