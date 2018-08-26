@@ -8,6 +8,7 @@
 
 *** Settings ***
 Documentation    This test is to have the data driven test between pair of stations 
+Library           Selenium2Library    
 Library           ExcelLibrary
 Library           OperatingSystem
 Library           robot.api.logger

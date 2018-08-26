@@ -12,8 +12,11 @@ Library           Collections
 
 
 *** Variables ***
-${USERNAME}     amber21testdev
-${KEY}  6b34c98e-d08d-40ed-9a87-3d1a1f08dddb
+#${USERNAME}     amber21testdev
+#${KEY}  6b34c98e-d08d-40ed-9a87-3d1a1f08dddb
+
+${USERNAME}     testAutothon
+${KEY}  4a0153ff-30e4-4f83-a0b7-cd49b8a84e99
 ${REMOTE_URL}     https://${USERNAME}:${KEY}@ondemand.saucelabs.com:443/wd/hub
 #ondemand.saucelabs.com:80/wd/hub
 

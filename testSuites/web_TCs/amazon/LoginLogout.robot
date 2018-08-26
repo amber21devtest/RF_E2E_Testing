@@ -10,14 +10,14 @@
 Documentation    This Suite is to Test Product Checkout functionality  
 Resource  ../../../resources/web/pageObjects/amazon/objAmazonLogin.robot
 Resource    ../../../resources/web/pageObjects/amazon/objPageAmazonHome.robot
-
+Resource    ../../../resources/global.robot
 
 *** Variables ***
 ${METHOD}  WEB
-${URL}  https://www.amazon.in/
-${BROWSER}  chrome
-${USERNAME}  amber21devtest@gmail.com    
-${PASSWORD}  Welcome_01
+#${URL}  https://www.amazon.in/
+#${BROWSER}  chrome
+#${USERNAME}  amber21devtest@gmail.com    
+#${PASSWORD}  Welcome_01
 
 *** Test Cases ***
 This is to test the Log in

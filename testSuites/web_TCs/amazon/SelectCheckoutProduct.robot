@@ -8,12 +8,7 @@
 *** Settings ***
 Resource  ../../../resources/web/pageObjects/amazon/objAmazonLogin.robot
 Resource    ../../../resources/web/pageObjects/amazon/objPageAmazonHome.robot
-*** Variables ***
-${METHOD}  WEB
-${URL}  https://www.amazon.in/
-${BROWSER}  chrome
-${USERNAME}  amber21devtest@gmail.com    
-${PASSWORD}  Welcome_01
+Resource    ../../../resources/global.robot
 *** Test Cases ***
 Log into the Application with valid id and password
   Open Browser to Log in   ${METHOD}  ${URL}  ${BROWSER}

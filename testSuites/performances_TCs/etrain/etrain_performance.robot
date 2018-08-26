@@ -1,4 +1,5 @@
 *** Settings ***
+Library           Selenium2Library  
 Library           JMeterLib.py
 Library           Collections
 
@@ -9,11 +10,14 @@ ${outputResults}  D:/00_Workspace/04_RobotFrameWork/01_Python/RF_E2E_Testing/out
 #D:/00_Workspace/04_RobotFrameWork/01_Python/RF_E2E_Testing/outputResults
 
 *** Test Cases ***
-tc1_justRunJMeter
+
+tc1_justRunJMeter 
+    [Tags]    Performance
     Run jmeter   ${jMeterStartup}  ${jmxFileLocation}  ${outputResults}/tc1_justRunJMeter.jtl  
 
 
 tc2_analyseAndConvertExistingJtlLog
+    [Tags]    Performance
     ${result}    analyse Jtl convert    ${outputResults}/tc1_justRunJMeter.jtl
     log    ${result}
     : FOR    ${ELEMENT}    IN    @{result}
@@ -24,6 +28,7 @@ tc2_analyseAndConvertExistingJtlLog
     
     
 tc3_runJMeterAndAnalyseAndConvertLog
+    [Tags]    Performance
     ${result}    run jmeter analyse jtl convert    ${jMeterStartup}  ${jmxFileLocation}  ${outputResults}/tc3_runJMeterAndAnalyseAndConvertLog.jtl  
     log    ${result}
     :FOR    ${ELEMENT}    IN    @{result}
