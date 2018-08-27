@@ -45,8 +45,6 @@ Enter the source and destination stations
      \  press key   id=tbsfi3  \\13 
      \  Click Button     id=tbssbmtbtn   
 
-
-
 Excute web execution steps 
     [Arguments]     ${url}  ${Browser}   
      Open Browser    ${url}  ${Browser}  

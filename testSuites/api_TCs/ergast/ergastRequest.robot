@@ -8,8 +8,7 @@
 ###############################################
 
 *** Settings ***
-Documentation    This Test is to test the
-...    Formula one racing reuslts 
+Documentation    This Test is to test the Formula one racing reuslts 
 Library    Collections    
 Library    XML    
 Library    RequestsLibrary    

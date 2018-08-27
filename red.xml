@@ -10,6 +10,7 @@
     <referencedLibrary type="PYTHON" name="requests" path="C:/Python27/Lib/site-packages"/>
     <referencedLibrary type="PYTHON" name="JMeterLib" path="C:/Python27/Lib/site-packages"/>
     <referencedLibrary type="PYTHON" name="robot.api.logger" path="C:/Python27/lib/site-packages"/>
+    <referencedLibrary type="PYTHON" name="DatabaseLibrary" path="C:/Python27/Lib/site-packages"/>
     <pythonpath/>
     <classpath/>
     <excludedForValidation/>

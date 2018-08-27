@@ -14,6 +14,7 @@ Resource    ../../../mobile/mConnection.robot
 *** Variables ***
 ${strWeb}  WEB
 ${strMOBILE}  MOBILE
+${eleUser}  xpath=.//*[@id='ap_email']
 
 
 *** Keywords ***
@@ -26,7 +27,7 @@ Open Browser to Log in
 
 Enter the User Name and Password
     [Arguments]    ${userName}  ${passWord}
-    Input Text    xpath=.//*[@id='ap_email']    ${userName}
+    Input Text    ${eleUser}    ${userName}
     Click Element    xpath=.//*[@id='continue']
     Input Text    xpath=.//*[@id='ap_password']    ${passWord}
     Click Element    xpath=//*[@id="signInSubmit"]
